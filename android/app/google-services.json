@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "129071925056",
+    "project_id": "soja-c6670",
+    "storage_bucket": "soja-c6670.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129071925056:android:bbc9c48166e4c049d89ca5",
+        "android_client_info": {
+          "package_name": "com.example.soja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129071925056-iliqgchifcbhjdsukmf68j321k75kh6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTDapFtp12mGPcRG8E0yNgqlpitvtY09c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129071925056-iliqgchifcbhjdsukmf68j321k75kh6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
