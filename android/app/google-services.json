@@ -29,13 +29,6 @@
             {
               "client_id": "129071925056-iliqgchifcbhjdsukmf68j321k75kh6g.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "129071925056-32h8t23b0rb2245193t7p4k7te2eki7q.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.soja"
-              }
             }
           ]
         }
