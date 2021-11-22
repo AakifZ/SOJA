@@ -48,6 +48,7 @@ class _RegisterState extends State<Register> {
           children: <Widget> [
             SizedBox(height: 20.0,),
             TextFormField(
+              decoration: new InputDecoration.collapsed(hintText: "Enter Email"),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
                 onChanged: (val) {
                   setState(() {
@@ -57,6 +58,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
+              decoration: new InputDecoration.collapsed(hintText: "Enter First Name"),
                 validator: (val) => val!.isEmpty ? 'Enter first name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -66,6 +68,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
+              decoration: new InputDecoration.collapsed(hintText: "Enter Last Name"),
                 validator: (val) => val!.isEmpty ? 'Enter last name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -75,6 +78,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
+              decoration: new InputDecoration.collapsed(hintText: "Enter DOB"),
                 validator: (val) => val!.isEmpty ? 'Enter date of birth' : null,
                 onChanged: (val) {
                   setState(() {
@@ -84,6 +88,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
+              decoration: new InputDecoration.collapsed(hintText: "Enter Password"),
                 obscureText: true,
                 validator: (val) => val!.length < 8 ? 'Enter a password 8+ chars long' : null,
                 onChanged: (val) {
