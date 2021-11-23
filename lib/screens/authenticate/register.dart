@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/shared/constants.dart';
+import 'package:soja/shared/loading.dart';
 
 class Register extends StatefulWidget {
   final Function? toggleView;
@@ -15,6 +16,7 @@ class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
   // text field state
   String email = '';
   String username = '';
@@ -27,7 +29,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading(): Scaffold(
       backgroundColor: Colors.purple[100],
       appBar: AppBar(
           backgroundColor: Colors.purple[400],
@@ -51,7 +53,7 @@ class _RegisterState extends State<Register> {
           children: <Widget> [
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Email'),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
                 onChanged: (val) {
                   setState(() {
@@ -61,7 +63,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Username'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Username'),
                 validator: (val) => val!.isEmpty ? 'Enter username' : null,
                 onChanged: (val) {
                   setState(() {
@@ -71,7 +73,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'First Name'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter First Name'),
                 validator: (val) => val!.isEmpty ? 'Enter first name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -81,7 +83,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Last Name'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Last Name'),
                 validator: (val) => val!.isEmpty ? 'Enter last name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -152,10 +154,12 @@ class _RegisterState extends State<Register> {
                       TextStyle(color: Colors.white))),
               onPressed: () async {
                 if(_formKey.currentState!.validate() && gender.isNotEmpty) {
+                  setState(() => loading = true);
                   dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender);
                   if (result == null && gender.isEmpty) {
                     setState(() {
                         error = 'please fill the required credentials';
+                        loading = false;
                     });
                   }
                 }
