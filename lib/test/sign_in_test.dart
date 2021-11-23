@@ -1,13 +1,16 @@
+import 'package:soja/screens/authenticate/sign_in.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('String.split() splits the string on the delimiter', () {
-    var string = 'Male';
-    expect(string, equals(['foo', 'bar', 'baz']));
+  test('get email', () {
+    SignIn signIn = new SignIn();
+    var expected = 'b2477332@ben.edu';
+    expect(expected, signIn.getEmail());
   });
 
-  test('String.trim() removes surrounding whitespace', () {
-    var string = '  foo ';
-    expect(string.trim(), equals('foo'));
+  test('get password', () {
+    SignIn signIn = new SignIn();
+    var expected = 'Yourmom14';
+    expect(expected, signIn.getPassword());
   });
 }

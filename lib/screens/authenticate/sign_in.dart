@@ -11,6 +11,9 @@ class SignIn extends StatefulWidget {
 
   @override
   _SignInState createState() => _SignInState();
+
+
+
 }
 
 class _SignInState extends State<SignIn> {
@@ -23,6 +26,13 @@ class _SignInState extends State<SignIn> {
   String password = '';
   String error = '';
 
+  String getEmail() {
+    return email;
+  }
+
+  String getPassword() {
+    return password;
+  }
   @override
   Widget build(BuildContext context) {
     /*if Loading is false then it will show the Scaffold method
@@ -51,6 +61,7 @@ class _SignInState extends State<SignIn> {
         children: <Widget> [
           SizedBox(height: 20.0,),
           TextFormField(
+              style: TextStyle(color: Colors.black),
               decoration: textInputDecoration.copyWith(hintText: 'Email'),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
             onChanged: (val) {
@@ -61,6 +72,7 @@ class _SignInState extends State<SignIn> {
           ),
           SizedBox(height: 20.0,),
           TextFormField(
+              style: TextStyle(color: Colors.black),
               decoration: textInputDecoration.copyWith(hintText: 'Password'),
           obscureText: true,
               validator: (val) => val!.length < 8 ? 'Enter a password 8+ chars long' : null,
