@@ -15,6 +15,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Text(
+          //Presents either "light mode" or "dark mode" in text body.
           'Hello $text!',
           style: TextStyle(
             fontSize: 32,
@@ -28,7 +29,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.purple[400],
         elevation: 0.0,
         actions: <Widget>[
-
+          //Here is where the toggle switch functionality is, in the appbar
           ChangeTheme(),
           TextButton.icon(
             icon: Icon(Icons.person),
