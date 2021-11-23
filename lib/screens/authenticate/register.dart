@@ -57,7 +57,7 @@ class _RegisterState extends State<Register> {
           children: <Widget> [
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Email'),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
                 onChanged: (val) {
                   setState(() {
@@ -67,7 +67,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Username'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Username'),
                 validator: (val) => val!.isEmpty ? 'Enter username' : null,
                 onChanged: (val) {
                   setState(() {
@@ -77,7 +77,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'First Name'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter First Name'),
                 validator: (val) => val!.isEmpty ? 'Enter first name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -87,7 +87,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Last Name'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Last Name'),
                 validator: (val) => val!.isEmpty ? 'Enter last name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -107,7 +107,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Password'),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Password'),
                 obscureText: true,
                 validator: (val) => val!.length < 8 ? 'Enter a password 8+ chars long' : null,
                 onChanged: (val) {
