@@ -21,8 +21,15 @@ class _RegisterState extends State<Register> {
   String firstName = '';
   String lastName = '';
   String date = '';
+  String gender = '';
   String password = '';
   String error = '';
+
+  void _handleGenderChange(String? value) {
+    setState(() {
+      gender = value!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +117,26 @@ class _RegisterState extends State<Register> {
                 }
             ),
             SizedBox(height: 20.0,),
+            Text('Select Your Gender'),
+            Radio<String>(
+              value: "Male",
+              groupValue: gender,
+              onChanged: _handleGenderChange,
+            ),
+            Text("Male"),
+            Radio<String>(
+              value: "Female",
+              groupValue: gender,
+              onChanged: _handleGenderChange,
+            ),
+            Text("Female"),
+            Radio<String>(
+              value: "Nonbinary",
+              groupValue: gender,
+              onChanged: _handleGenderChange,
+            ),
+            Text("Nonbinary"),
+            SizedBox(height: 20.0,),
             ElevatedButton(
               child: Text('Register'),
               style: ButtonStyle(
@@ -119,10 +146,10 @@ class _RegisterState extends State<Register> {
                       TextStyle(color: Colors.white))),
               onPressed: () async {
                 if(_formKey.currentState!.validate()) {
-                  dynamic result = await _auth.register(email, username, firstName, lastName, date, password);
+                  dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender);
                   if (result == null) {
                     setState(() {
-                        error = 'please supply a valid email';
+                        error = 'please fill the required credentials';
                     });
                   }
                 }
