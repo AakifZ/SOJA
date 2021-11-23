@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
 
@@ -6,7 +8,7 @@ class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
     ? 'DarkTheme'
     : 'LightTheme';
 

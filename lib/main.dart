@@ -21,12 +21,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
       builder: (context, _) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
         return StreamProvider<MyUser?>.value(
           value: AuthService().user,
           catchError: (User, MyUser) => null,
           initialData: null,
           child: MaterialApp(
-            themeMode: ThemeMode.system,
+            themeMode: themeProvider.themeMode,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
             home: Wrapper(),
