@@ -22,12 +22,13 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Colors.purple[50],
+     /* backgroundColor: Colors.purple[50],*/
       appBar: AppBar(
         title: Text('SOJA'),
         backgroundColor: Colors.purple[400],
         elevation: 0.0,
         actions: <Widget>[
+
           ChangeTheme(),
           TextButton.icon(
             icon: Icon(Icons.person),
