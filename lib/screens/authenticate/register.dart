@@ -25,12 +25,6 @@ class _RegisterState extends State<Register> {
   String password = '';
   String error = '';
 
-  void _handleGenderChange(String? value) {
-    setState(() {
-      gender = value!;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,19 +115,31 @@ class _RegisterState extends State<Register> {
             Radio<String>(
               value: "Male",
               groupValue: gender,
-              onChanged: _handleGenderChange,
+              onChanged: (value) {
+                setState(() {
+                  gender = value!;
+                });
+              },
             ),
             Text("Male"),
             Radio<String>(
               value: "Female",
               groupValue: gender,
-              onChanged: _handleGenderChange,
+              onChanged: (value) {
+                setState(() {
+                  gender = value!;
+                });
+              },
             ),
             Text("Female"),
             Radio<String>(
               value: "Nonbinary",
               groupValue: gender,
-              onChanged: _handleGenderChange,
+              onChanged: (value) {
+                setState(() {
+                  gender = value!;
+                });
+              },
             ),
             Text("Nonbinary"),
             SizedBox(height: 20.0,),
@@ -145,9 +151,9 @@ class _RegisterState extends State<Register> {
                   textStyle: MaterialStateProperty.all(
                       TextStyle(color: Colors.white))),
               onPressed: () async {
-                if(_formKey.currentState!.validate()) {
+                if(_formKey.currentState!.validate() && gender.isNotEmpty) {
                   dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender);
-                  if (result == null) {
+                  if (result == null && gender.isEmpty) {
                     setState(() {
                         error = 'please fill the required credentials';
                     });
