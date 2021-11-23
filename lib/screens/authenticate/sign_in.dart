@@ -25,6 +25,9 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    /*if Loading is false then it will show the Scaffold method
+    but if loading is true the loading function will run
+     */
     return loading ? Loading() : Scaffold(
       backgroundColor: Colors.purple[100],
       appBar: AppBar(
@@ -77,8 +80,12 @@ class _SignInState extends State<SignIn> {
                     TextStyle(color: Colors.white))),
             onPressed: () async {
               if(_formKey.currentState!.validate()) {
+                //if loading is true it should let the user go to the homepage of the app
                 setState(() => loading = true);
                 dynamic result = await _auth.signIn(email, password);
+                /*if the result is empty then have a loading animation
+                and then show the error message
+                 */
                  if (result == null) {
                    setState(() {
                     error = 'could not sign in with those credentials';
