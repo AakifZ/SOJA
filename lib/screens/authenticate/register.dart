@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/shared/constants.dart';
+import 'package:soja/shared/loading.dart';
 
 class Register extends StatefulWidget {
   final Function? toggleView;
@@ -15,6 +16,7 @@ class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
   // text field state
   String email = '';
   String username = '';
@@ -33,7 +35,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading(): Scaffold(
       backgroundColor: Colors.purple[100],
       appBar: AppBar(
           backgroundColor: Colors.purple[400],
@@ -146,10 +148,12 @@ class _RegisterState extends State<Register> {
                       TextStyle(color: Colors.white))),
               onPressed: () async {
                 if(_formKey.currentState!.validate()) {
+                  setState(() => loading = true);
                   dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender);
                   if (result == null) {
                     setState(() {
                         error = 'please fill the required credentials';
+                        loading = false;
                     });
                   }
                 }
