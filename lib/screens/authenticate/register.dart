@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soja/services/auth.dart';
+import 'package:soja/shared/constants.dart';
 
 class Register extends StatefulWidget {
   final Function? toggleView;
@@ -16,11 +17,19 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   // text field state
   String email = '';
+  String username = '';
   String firstName = '';
   String lastName = '';
   String date = '';
+  String gender = '';
   String password = '';
   String error = '';
+
+  void _handleGenderChange(String? value) {
+    setState(() {
+      gender = value!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +57,7 @@ class _RegisterState extends State<Register> {
           children: <Widget> [
             SizedBox(height: 20.0,),
             TextFormField(
-              decoration: new InputDecoration.collapsed(hintText: "Enter Email"),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Email'),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
                 onChanged: (val) {
                   setState(() {
@@ -58,7 +67,17 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-              decoration: new InputDecoration.collapsed(hintText: "Enter First Name"),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Username'),
+                validator: (val) => val!.isEmpty ? 'Enter username' : null,
+                onChanged: (val) {
+                  setState(() {
+                    username = val;
+                  });
+                }
+            ),
+            SizedBox(height: 20.0,),
+            TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Enter First Name'),
                 validator: (val) => val!.isEmpty ? 'Enter first name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -68,7 +87,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-              decoration: new InputDecoration.collapsed(hintText: "Enter Last Name"),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Last Name'),
                 validator: (val) => val!.isEmpty ? 'Enter last name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -78,7 +97,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-              decoration: new InputDecoration.collapsed(hintText: "Enter DOB"),
+                decoration: textInputDecoration.copyWith(hintText: 'Date of Birth'),
                 validator: (val) => val!.isEmpty ? 'Enter date of birth' : null,
                 onChanged: (val) {
                   setState(() {
@@ -88,7 +107,7 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-              decoration: new InputDecoration.collapsed(hintText: "Enter Password"),
+                decoration: textInputDecoration.copyWith(hintText: 'Enter Password'),
                 obscureText: true,
                 validator: (val) => val!.length < 8 ? 'Enter a password 8+ chars long' : null,
                 onChanged: (val) {
@@ -97,6 +116,26 @@ class _RegisterState extends State<Register> {
                   });
                 }
             ),
+            SizedBox(height: 20.0,),
+            Text('Select Your Gender'),
+            Radio<String>(
+              value: "Male",
+              groupValue: gender,
+              onChanged: _handleGenderChange,
+            ),
+            Text("Male"),
+            Radio<String>(
+              value: "Female",
+              groupValue: gender,
+              onChanged: _handleGenderChange,
+            ),
+            Text("Female"),
+            Radio<String>(
+              value: "Nonbinary",
+              groupValue: gender,
+              onChanged: _handleGenderChange,
+            ),
+            Text("Nonbinary"),
             SizedBox(height: 20.0,),
             ElevatedButton(
               child: Text('Register'),
@@ -107,10 +146,10 @@ class _RegisterState extends State<Register> {
                       TextStyle(color: Colors.white))),
               onPressed: () async {
                 if(_formKey.currentState!.validate()) {
-                  dynamic result = await _auth.register(email, firstName, lastName, date, password);
+                  dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender);
                   if (result == null) {
                     setState(() {
-                        error = 'please supply a valid email';
+                        error = 'please fill the required credentials';
                     });
                   }
                 }

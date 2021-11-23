@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soja/services/auth.dart';
+import 'package:soja/shared/constants.dart';
 
 class SignIn extends StatefulWidget {
 
@@ -44,7 +45,7 @@ class _SignInState extends State<SignIn> {
         children: <Widget> [
           SizedBox(height: 20.0,),
           TextFormField(
-            decoration: new InputDecoration.collapsed(hintText: "Enter Email"),
+              decoration: textInputDecoration.copyWith(hintText: 'Enter Email'),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
             onChanged: (val) {
               setState(() {
@@ -54,7 +55,7 @@ class _SignInState extends State<SignIn> {
           ),
           SizedBox(height: 20.0,),
           TextFormField(
-            decoration: new InputDecoration.collapsed(hintText: "Enter Password"),
+          decoration: textInputDecoration.copyWith(hintText: 'Enter Password'),
           obscureText: true,
               validator: (val) => val!.length < 8 ? 'Enter a password 8+ chars long' : null,
             onChanged: (val) {
@@ -88,7 +89,6 @@ class _SignInState extends State<SignIn> {
             style: TextStyle(color: Colors.red, fontSize: 14.0),
           )
         ],
-
         ),
       ),
     ),
