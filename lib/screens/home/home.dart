@@ -3,27 +3,40 @@ import 'package:provider/provider.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
+import 'package:soja/screens/addpost/add_post.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-    ? 'DarkTheme'
-    : 'LightTheme';
+        ? 'DarkTheme'
+        : 'LightTheme';
 
     return Scaffold(
-      body: Center(
-        child: Text(
-          //Presents either "light mode" or "dark mode" in text body.
-          'Hello $text!',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+      body: Container(
+          color: Colors.black38,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  child: ListTile(
+                  title: Text("POST", style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold)),
+                    subtitle: Text("blah"),
+                ),),
+              ),
+            ],
           ),
-        ),
       ),
-     /* backgroundColor: Colors.purple[50],*/
+      /* backgroundColor: Colors.purple[50],*/
       appBar: AppBar(
         title: Text('SOJA'),
         backgroundColor: Colors.purple[400],
@@ -39,6 +52,13 @@ class Home extends StatelessWidget {
             },
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AddPost()));
+      },
+      child: Icon(Icons.edit, color: Colors.white,),
+        backgroundColor: Colors.purple,
+        tooltip: "Add a Post",
       ),
     );
   }
