@@ -31,6 +31,7 @@ class Home extends StatelessWidget {
         actions: <Widget>[
           //Here is where the toggle switch functionality is, in the appbar
           ChangeTheme(),
+
           TextButton.icon(
             icon: Icon(Icons.person),
             label: Text('Logout'),
