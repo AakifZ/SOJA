@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soja/screens/home/home.dart';
 import 'package:soja/services/changeTheme.dart';
 
 class SettingPageUI extends StatefulWidget {
@@ -35,7 +36,11 @@ class _SettingPageUIState extends State<SettingPageUI> {
       appBar: AppBar(
         title: Text("Settings", style: TextStyle(fontSize: 22)),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Home();
+            }));
+          },
           icon: Icon(
             Icons.arrow_back,
             color: Colors.white,
