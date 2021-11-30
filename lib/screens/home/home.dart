@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
+import 'package:soja/settings/settings_page.dart';
+
+import '../../main.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -30,7 +33,16 @@ class Home extends StatelessWidget {
         elevation: 0.0,
         actions: <Widget>[
           //Here is where the toggle switch functionality is, in the appbar
-          ChangeTheme(),
+
+         TextButton.icon(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SettingPageUI();
+                }));
+              },
+              icon: Icon(Icons.settings),
+              label: Text('Settings')),
+
           TextButton.icon(
             icon: Icon(Icons.person),
             label: Text('Logout'),
