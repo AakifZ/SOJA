@@ -83,6 +83,7 @@ class _RegisterState extends State<Register> {
             TextFormField(
                 style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter Email'),
+                style: TextStyle(color: Colors.black),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
                 onChanged: (val) {
                   setState(() {
@@ -94,6 +95,7 @@ class _RegisterState extends State<Register> {
             TextFormField(
                 style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter Username'),
+                style: TextStyle(color: Colors.black),
                 validator: (val) => val!.isEmpty ? 'Enter username' : null,
                 onChanged: (val) {
                   setState(() {
@@ -105,6 +107,7 @@ class _RegisterState extends State<Register> {
             TextFormField(
                 style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter First Name'),
+                style: TextStyle(color: Colors.black),
                 validator: (val) => val!.isEmpty ? 'Enter first name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -116,6 +119,7 @@ class _RegisterState extends State<Register> {
             TextFormField(
                 style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter Last Name'),
+                style: TextStyle(color: Colors.black),
                 validator: (val) => val!.isEmpty ? 'Enter last name' : null,
                 onChanged: (val) {
                   setState(() {

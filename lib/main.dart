@@ -1,9 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
+import 'package:soja/services/changeTheme.dart';
+import 'package:soja/settings/settings_page.dart';
 
 import 'models/user.dart';
 
@@ -35,6 +39,10 @@ class MyApp extends StatelessWidget {
         );
       });
   }
+
+
+
+
 
 
 
