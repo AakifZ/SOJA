@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/misc/FAQ.dart';
+import 'package:soja/screens/misc/Languages.dart';
 import 'package:soja/screens/misc/TermsandConditions.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
@@ -69,13 +70,26 @@ class _SettingPageUIState extends State<SettingPageUI> {
                 Text("Account", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))
               ],
             ),
+
+            //Buttons
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             buildAccountOption(context, "Change Password"),
             buildAccountOption(context, "Content Settings"),
             buildAccountOption(context, "Social"),
-            buildAccountOption(context, "Langauge"),
+            buildAccountOption(context, "Languages"),
             buildAccountOption(context, "Privacy and Security"),
+
+            /*FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagesPage()));
+
+            }, child:  Text("Languages", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),*/
+
             FlatButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => FAQpage()));
 
@@ -85,8 +99,9 @@ class _SettingPageUIState extends State<SettingPageUI> {
                 color: Colors.grey[600],
 
             ))),
+
             FlatButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TermsandConditions()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TermsandConditionsPage()));
 
             }, child:  Text("Terms and Conditions", style: TextStyle(
               fontSize: 20,

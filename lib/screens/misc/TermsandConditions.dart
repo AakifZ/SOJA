@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class TermsandConditions extends StatelessWidget {
+class TermsandConditionsPage extends StatelessWidget {
 
 
   @override
