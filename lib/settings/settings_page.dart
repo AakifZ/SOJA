@@ -82,7 +82,6 @@ class _SettingPageUIState extends State<SettingPageUI> {
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             buildNotificationOption("Dark Mode", val1, onChangeFunction1),
-            ChangeTheme(),
             SizedBox(height: 50),
             Center(
                 child: OutlinedButton(
@@ -116,7 +115,9 @@ class _SettingPageUIState extends State<SettingPageUI> {
                 fontWeight: FontWeight.w500,
                 color: Colors.grey[600]
             )),
-            Transform.scale(
+            ChangeTheme()
+
+    /*        Transform.scale(
                 scale: 0.7,
                 child: CupertinoSwitch(
                   activeColor: Colors.blue,
@@ -125,7 +126,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
                   onChanged: (bool newValue) {
                     onChangeMethod(newValue);
                   },
-                ))
+                ))*/
           ],
         )
     );
