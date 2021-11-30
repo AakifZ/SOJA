@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/misc/FAQ.dart';
+import 'package:soja/screens/misc/TermsandConditions.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
 
@@ -84,6 +85,16 @@ class _SettingPageUIState extends State<SettingPageUI> {
                 color: Colors.grey[600],
 
             ))),
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TermsandConditions()));
+
+            }, child:  Text("Terms and Conditions", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),
+
             SizedBox(height: 40),
             Row(
               children: [
