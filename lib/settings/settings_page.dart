@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soja/screens/home/home.dart';
+import 'package:soja/screens/misc/FAQ.dart';
 import 'package:soja/services/changeTheme.dart';
 
 class SettingPageUI extends StatefulWidget {
@@ -70,6 +71,15 @@ class _SettingPageUIState extends State<SettingPageUI> {
             buildAccountOption(context, "Social"),
             buildAccountOption(context, "Langauge"),
             buildAccountOption(context, "Privacy and Security"),
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQpage()));
+
+            }, child:  Text("FAQ", style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[600],
+
+            ))),
             SizedBox(height: 40),
             Row(
               children: [
@@ -133,43 +143,43 @@ class _SettingPageUIState extends State<SettingPageUI> {
   }
 
   GestureDetector buildAccountOption(BuildContext context, String title) {
-    return GestureDetector(
-        onTap: () {
-          showDialog(context: context, builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(title),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Option 1"),
-                  Text("Option 2")
+      return GestureDetector(
+          onTap: () {
+            showDialog(context: context, builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(title),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Option 1"),
+                    Text("Option 2")
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("Close"))
                 ],
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text("Close"))
-              ],
-            );
-          });
+              );
+            });
+          },
+          child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(title, style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[600]
+                    )),
+                    Icon(Icons.arrow_forward_ios, color: Colors.grey)
+                  ]
+              )
+          )
+      );
 
-        },
-        child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(title, style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[600]
-                  )),
-                  Icon(Icons.arrow_forward_ios, color: Colors.grey)
-                ]
-            )
-        )
-    );
   }
 }
