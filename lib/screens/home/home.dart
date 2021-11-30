@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
         actions: <Widget>[
           //Here is where the toggle switch functionality is, in the appbar
 
-          TextButton.icon(
+         TextButton.icon(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return SettingPageUI();

@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
+import 'package:soja/settings/settings_page.dart';
 
 import 'models/user.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.themeMode,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
-            home: Wrapper(),
+            home: SettingPageUI(),
           ),
         );
       });

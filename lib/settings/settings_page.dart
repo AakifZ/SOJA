@@ -16,7 +16,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
   onChangeFunction1(bool newVal1) {
     setState(() {
       val1 = newVal1;
-      ChangeTheme();
+
     });
   }
   onChangeFunction2(bool newVal2) {
