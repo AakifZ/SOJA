@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/misc/FAQ.dart';
+import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
 
 class SettingPageUI extends StatefulWidget {
@@ -10,6 +11,9 @@ class SettingPageUI extends StatefulWidget {
 }
 
 class _SettingPageUIState extends State<SettingPageUI> {
+
+  final AuthService _auth = AuthService();
+
   bool val1 = true;
   bool val2 = true;
   bool val3 = true;
@@ -58,7 +62,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
               children: [
                 Icon(
                   Icons.person,
-                  color: Colors.blue,
+                  color: Colors.deepPurpleAccent,
                 ),
                 SizedBox(width: 10),
                 Text("Account", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))
@@ -83,7 +87,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
             SizedBox(height: 40),
             Row(
               children: [
-                Icon(Icons.volume_up_outlined, color: Colors.blue),
+                Icon(Icons.volume_up_outlined, color: Colors.deepPurpleAccent),
                 SizedBox(width: 10),
                 Text("Notifications", style: TextStyle(
                     fontSize: 22, fontWeight: FontWeight.bold))
@@ -92,6 +96,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             buildNotificationOption("Dark Mode", val1, onChangeFunction1),
+
             SizedBox(height: 50),
             Center(
                 child: OutlinedButton(
@@ -101,7 +106,9 @@ class _SettingPageUIState extends State<SettingPageUI> {
                           borderRadius: BorderRadius.circular(20)
                       )
                   ),
-                  onPressed: () {},
+                  onPressed: () async{
+                    await _auth.signOut();
+                  },
                   child: Text("Sign Out", style: TextStyle(
                       fontSize: 16,
                       letterSpacing: 2.2
