@@ -45,8 +45,9 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
 
+      //Pass user registration data into the Firestore database and give user an initial soja point value of 0.
       await DatabaseService(uid: user!.uid).updateUserData(email, username, firstName, lastName, date, password, gender);
-      return _userFromFirebaseUser(user!);
+      return _userFromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
       return null;

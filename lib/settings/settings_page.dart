@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soja/screens/home/home.dart';
+import 'package:soja/screens/misc/FAQ.dart';
+import 'package:soja/screens/misc/Languages.dart';
+import 'package:soja/screens/misc/TermsandConditions.dart';
+import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
 
 class SettingPageUI extends StatefulWidget {
@@ -9,6 +13,9 @@ class SettingPageUI extends StatefulWidget {
 }
 
 class _SettingPageUIState extends State<SettingPageUI> {
+
+  final AuthService _auth = AuthService();
+
   bool val1 = true;
   bool val2 = true;
   bool val3 = true;
@@ -57,23 +64,56 @@ class _SettingPageUIState extends State<SettingPageUI> {
               children: [
                 Icon(
                   Icons.person,
-                  color: Colors.blue,
+                  color: Colors.deepPurpleAccent,
                 ),
                 SizedBox(width: 10),
                 Text("Account", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))
               ],
             ),
+
+            //Buttons
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             buildAccountOption(context, "Change Password"),
             buildAccountOption(context, "Content Settings"),
             buildAccountOption(context, "Social"),
-            buildAccountOption(context, "Langauge"),
+            buildAccountOption(context, "Languages"),
             buildAccountOption(context, "Privacy and Security"),
+
+            /*FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagesPage()));
+
+            }, child:  Text("Languages", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),*/
+
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQpage()));
+
+            }, child:  Text("FAQ", style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[600],
+
+            ))),
+
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TermsandConditionsPage()));
+
+            }, child:  Text("Terms and Conditions", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),
+
             SizedBox(height: 40),
             Row(
               children: [
-                Icon(Icons.volume_up_outlined, color: Colors.blue),
+                Icon(Icons.volume_up_outlined, color: Colors.deepPurpleAccent),
                 SizedBox(width: 10),
                 Text("Notifications", style: TextStyle(
                     fontSize: 22, fontWeight: FontWeight.bold))
@@ -82,7 +122,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             buildNotificationOption("Dark Mode", val1, onChangeFunction1),
-            ChangeTheme(),
+
             SizedBox(height: 50),
             Center(
                 child: OutlinedButton(
@@ -92,7 +132,9 @@ class _SettingPageUIState extends State<SettingPageUI> {
                           borderRadius: BorderRadius.circular(20)
                       )
                   ),
-                  onPressed: () {},
+                  onPressed: () async{
+                    await _auth.signOut();
+                  },
                   child: Text("Sign Out", style: TextStyle(
                       fontSize: 16,
                       letterSpacing: 2.2
@@ -116,7 +158,9 @@ class _SettingPageUIState extends State<SettingPageUI> {
                 fontWeight: FontWeight.w500,
                 color: Colors.grey[600]
             )),
-            Transform.scale(
+            ChangeTheme()
+
+    /*        Transform.scale(
                 scale: 0.7,
                 child: CupertinoSwitch(
                   activeColor: Colors.blue,
@@ -125,50 +169,50 @@ class _SettingPageUIState extends State<SettingPageUI> {
                   onChanged: (bool newValue) {
                     onChangeMethod(newValue);
                   },
-                ))
+                ))*/
           ],
         )
     );
   }
 
   GestureDetector buildAccountOption(BuildContext context, String title) {
-    return GestureDetector(
-        onTap: () {
-          showDialog(context: context, builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(title),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Option 1"),
-                  Text("Option 2")
+      return GestureDetector(
+          onTap: () {
+            showDialog(context: context, builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(title),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Option 1"),
+                    Text("Option 2")
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("Close"))
                 ],
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text("Close"))
-              ],
-            );
-          });
+              );
+            });
+          },
+          child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(title, style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[600]
+                    )),
+                    Icon(Icons.arrow_forward_ios, color: Colors.grey)
+                  ]
+              )
+          )
+      );
 
-        },
-        child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(title, style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[600]
-                  )),
-                  Icon(Icons.arrow_forward_ios, color: Colors.grey)
-                ]
-            )
-        )
-    );
   }
 }
