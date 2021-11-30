@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:soja/screens/posts/new_post_page.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
@@ -17,6 +18,7 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       body: Center(
+
         child: Text(
           //Presents either "light mode" or "dark mode" in text body.
           'Hello $text!',
@@ -51,6 +53,13 @@ class Home extends StatelessWidget {
             },
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => NewPostPage()));
+        },
+        child: Icon(Icons.edit),
+        backgroundColor: Colors.purple,
       ),
     );
   }
