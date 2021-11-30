@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:soja/screens/about/about.dart';
+import 'package:soja/screens/profile/profile.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
@@ -33,7 +35,14 @@ class Home extends StatelessWidget {
         elevation: 0.0,
         actions: <Widget>[
           //Here is where the toggle switch functionality is, in the appbar
-
+          TextButton.icon(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return About();
+                }));
+              },
+              icon: Icon(Icons.person),
+              label: Text('About Us')),
          TextButton.icon(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
