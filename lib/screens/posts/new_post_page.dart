@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/posts/post.dart';
 import 'package:soja/shared/constants.dart';
 
@@ -9,6 +10,7 @@ class NewPostPage extends StatelessWidget {
   PostService postService = new PostService();
   String title = "";
   String content = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,19 @@ class NewPostPage extends StatelessWidget {
             },
           ),
           FlatButton(
-            onPressed: ()=> postService.updatePostData(title, content), child: Text('Post',
+
+            onPressed: ()=> {
+                if(title.isEmpty || content.isEmpty) {
+                  error = "Please fill in all fields!"
+                } else
+                  {
+                    postService.updatePostData(title, content),
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home())),
+                  },
+          }, child: Text('Post',
             style: TextStyle(color: Colors.purple, fontSize: 20,),),
-          )
+          ),
       ]
       ),
       ),
