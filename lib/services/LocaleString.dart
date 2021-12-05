@@ -12,11 +12,13 @@ class LocalString extends Translations{
     'es_SP': {
       'hello': "Hola Mundo",
       'Language': 'Cambia Idíoma',
-      'Settings': 'orale'
+      'Settings': 'Ajustes'
     },
     //Hindi
     'hi_IN': {
       'hello': 'नमस्ते दुनिया',
+      'Language': 'भाषा: हिन्दी',
+      'Settings': 'समायोजन'
     }
 
   };
