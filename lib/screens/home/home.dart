@@ -5,11 +5,54 @@ import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
 import 'package:soja/settings/settings_page.dart';
-
+import 'package:get/get.dart';
 import '../../main.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
+
+  final List locale =[
+    {'name':'ENGLISH','locale': Locale('en','US')},
+    {'name':'Español','locale': Locale('es','SP')},
+    {'name':'हिंदी','locale': Locale('hi','IN')},
+  ];
+
+  updateLanguage(Locale locale){
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  builddialog(BuildContext context){
+    showDialog(context: context,
+        builder: (builder){
+          return AlertDialog(
+            title: Text('Choose Your Language'),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context,index){
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        child: Text(locale[index]['name']),
+                        onTap: (){
+                        print(locale[index]['name']);
+                        updateLanguage(locale[index]['locale']);
+                      },),
+                    );
+                  }, separatorBuilder: (context,index){
+                return Divider(
+                  color: Colors.blue,
+                );
+              }, itemCount: locale.length
+              ),
+            ),
+          );
+        }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
@@ -18,14 +61,13 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-
-        child: Text(
-          //Presents either "light mode" or "dark mode" in text body.
-          'Hello $text!',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
+        child: Column(
+          children: [
+            Text('hello'.tr, style: TextStyle(fontSize: 32),),
+            ElevatedButton(onPressed: (){
+                builddialog(context);
+            }, child: Text('Change Language')),
+          ]
         ),
       ),
      /* backgroundColor: Colors.purple[50],*/
