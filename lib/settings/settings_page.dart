@@ -116,7 +116,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
               children: [
                 Icon(Icons.volume_up_outlined, color: Colors.deepPurpleAccent),
                 SizedBox(width: 10),
-                Text("Notifications", style: TextStyle(
+                Text("General", style: TextStyle(
                     fontSize: 22, fontWeight: FontWeight.bold))
               ],
             ),

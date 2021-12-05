@@ -11,6 +11,8 @@ class LocalString extends Translations{
     //Spanish
     'es_SP': {
       'hello': "Hola Mundo",
+      'Language': 'Cambia Idíoma',
+      'Settings': 'orale'
     },
     //Hindi
     'hi_IN': {

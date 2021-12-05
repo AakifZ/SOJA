@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
             Text('hello'.tr, style: TextStyle(fontSize: 32),),
             ElevatedButton(onPressed: (){
                 builddialog(context);
-            }, child: Text('Change Language')),
+            }, child: Text('Language'.tr)),
           ]
         ),
       ),
@@ -85,11 +85,11 @@ class Home extends StatelessWidget {
                 }));
               },
               icon: Icon(Icons.settings),
-              label: Text('Settings')),
+              label: Text('Settings'.tr)),
 
           TextButton.icon(
             icon: Icon(Icons.person),
-            label: Text('Logout'),
+            label: Text('Logout'.tr),
             onPressed: () async{
               await _auth.signOut();
             },
