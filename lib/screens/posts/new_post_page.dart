@@ -11,6 +11,7 @@ class NewPostPage extends StatelessWidget {
   String title = "";
   String content = "";
   String error = "";
+  String game = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +36,24 @@ class NewPostPage extends StatelessWidget {
                 content = val;
             },
           ),
+          Text("Game", style: TextStyle(fontSize: 20),),
+          TextFormField(
+            decoration: textInputDecoration.copyWith(hintText: 'Game'),
+            onChanged: (val) {
+              game = val;
+            },
+          ),
           FlatButton(
 
             onPressed: ()=> {
-                if(title.isEmpty || content.isEmpty) {
+                if(title.isEmpty || content.isEmpty || game.isEmpty) {
                   error = "Please fill in all fields!"
                 } else
                   {
-                    postService.updatePostData(title, content),
+                    postService.updatePostData(title, content, game)
+                        .then((value) => print("Posted Successfully"))
+
+                        .catchError((error) => print("Could oot post")),
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Home())),
                   },
