@@ -17,16 +17,22 @@ class Post {
 
   Post(this.title, this.date, this.likes, this.dislikes, this.content);
 
-  Post.fromSnapshot(DataSnapshot snap):
-      this.key = snap.key,
-      this.content = snap.value[CONTENT],
-      this.date = snap.value[DATE],
-      this.likes = snap.value[LIKES],
-      this.dislikes = snap.value[DISLIKES],
-      this.title = snap.value[TITLE];
+  Post.fromSnapshot(DataSnapshot snap)
+      :
+        this.key = snap.key,
+        this.content = snap.value[CONTENT],
+        this.date = snap.value[DATE],
+        this.likes = snap.value[LIKES],
+        this.dislikes = snap.value[DISLIKES],
+        this.title = snap.value[TITLE];
 
   Map toMap() {
-    return {CONTENT: content, TITLE: title, DATE: date, LIKES: likes, DISLIKES: dislikes};
+    return {
+      CONTENT: content,
+      TITLE: title,
+      DATE: date,
+      LIKES: likes,
+      DISLIKES: dislikes
+    };
   }
-
 }

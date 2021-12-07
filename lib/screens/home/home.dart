@@ -66,11 +66,8 @@ class Home extends StatelessWidget {
     ? 'DarkTheme'
     : 'LightTheme';
 
-     return StreamProvider<List<Post>?>.value(
-      value: DatabaseService(uid: '').posts,
-      initialData: null,
 
-    child: Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -117,7 +114,6 @@ class Home extends StatelessWidget {
           child: Icon(Icons.edit),
           backgroundColor: Colors.purple,
         ),
-      ),
-    );
+      );
   }
 }
