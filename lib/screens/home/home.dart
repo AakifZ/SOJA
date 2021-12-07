@@ -14,7 +14,17 @@ import '../posts/post.dart';
 import 'post_list.dart';
 import 'package:soja/models/post.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    getPosts();
+  }
   final AuthService _auth = AuthService();
 
   final List locale =[
@@ -58,7 +68,8 @@ class Home extends StatelessWidget {
         }
     );
   }
-  final Stream<QuerySnapshot> posts = FirebaseFirestore.instance.collection('posts').snapshots();
+
+  // final Stream<QuerySnapshot> posts = FirebaseFirestore.instance.collection('posts').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +86,58 @@ class Home extends StatelessWidget {
               ElevatedButton(onPressed: (){
                   builddialog(context);
               }, child: Text('Language'.tr)),
-
-
+              Container(
+                  margin: EdgeInsets.all(10),
+                  child: FutureBuilder(
+                      future: getPosts(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        //For reload on button click
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          // If JSON data has not arrived yet show loading
+                          if (snapshot.data == null) {
+                            return Container(
+                              child: Center(
+                                child: Text("Loading..."),
+                              ),
+                            );
+                          } else {
+                            //Once the JSON Data has arrived build the list
+                            return ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  //List tile / Song row
+                                  return ListTile(
+                                    tileColor: Colors.white,
+                                    title: Text(snapshot.data[index].title,
+                                        style: TextStyle(
+                                            fontFamily: "Trajan Pro",
+                                            height: 1.0,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFF303030))),
+                                    subtitle: Text(snapshot.data[index].content,
+                                        style: TextStyle(
+                                            fontFamily: "Trajan Pro",
+                                            height: 1.0,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFF303030))),
+                                    trailing: Text(snapshot.data[index].game),
+                                    onTap: () {
+                                    },
+                                  );
+                                });
+                          }
+                        } else {
+                          return Container(
+                            child: Center(
+                              child: Text("Loading..."),
+                            ),
+                          );
+                        }
+                      })),
             ]
           ),
 
@@ -115,5 +176,19 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.purple,
         ),
       );
+  }
+
+  getPosts() async {
+    List<Post> _posts = [];
+
+    await FirebaseFirestore.instance.collection("posts")
+        .get().then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        Post post = Post(result.get('title'), result.get('content'), result.get('likes'), result.get('dislikes'), result.get('game'));
+        _posts.add(post);
+        print(post.content);
+      });
+    });
+    return _posts;
   }
 }

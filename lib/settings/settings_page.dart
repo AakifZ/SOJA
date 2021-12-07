@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soja/screens/about/about.dart';
 import 'package:soja/screens/authenticate/rest.dart';
+import 'package:soja/screens/authenticate/sign_in.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/misc/FAQ.dart';
 import 'package:soja/screens/misc/Languages.dart';
@@ -177,7 +178,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
                       )
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
 
                   },
                   child: Text("Sign Out", style: TextStyle(

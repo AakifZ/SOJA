@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soja/models/post.dart';
 
 
@@ -16,18 +17,21 @@ class PostService {
     });
   }
 
-   getPosts() {
-    //List<Post> posts = new List.empty();
-     Map<String, dynamic> posts = new Map();
+/*  getPosts() {
+    List<Post> posts = [];
+    //List<Post> postage = postCollection.get().asStream().toList() as List<Post>;
+
+    //Map<String, dynamic> posts = new Map();
     FirebaseFirestore.instance.collection("posts").get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        //posts.add(result.data());
-        //posts.
+        Post post = Post(result.get('title'), result.get('content'), result.get('likes'), result.get('dislikes'), result.get('game'));
+        posts.add(post);
         print(result.data());
+        print("TITLE: " + result.get('title'));
+        print(post.content);
       });
     });
-
-  }
-
-
+    return posts;
+    //return postage;
+  }*/
 }
