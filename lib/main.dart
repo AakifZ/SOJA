@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage>{
     var iOSinitilize = new IOSInitializationSettings();
     var initilizationsSettings = new InitializationSettings(androidInitize, iOSinitilize);
     fltrNotification = new FlutterLocalNotificationsPlugin();
-    fltrNotification.initialize(initializationSettings,
+    fltrNotification.initialize(initilizationsSettings,
         onSelectNotification: notificationSelected);
   }
 
