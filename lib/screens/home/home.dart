@@ -75,7 +75,7 @@ class Home extends StatelessWidget {
               ElevatedButton(onPressed: (){
                   builddialog(context);
               }, child: Text('Language'.tr)),
-              PostService().getPosts(),
+
 
             ]
           ),

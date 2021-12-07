@@ -17,10 +17,12 @@ class PostService {
   }
 
    getPosts() {
-    List<Post> posts = new List.empty();
+    //List<Post> posts = new List.empty();
+     Map<String, dynamic> posts = new Map();
     FirebaseFirestore.instance.collection("posts").get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
         //posts.add(result.data());
+        //posts.
         print(result.data());
       });
     });
