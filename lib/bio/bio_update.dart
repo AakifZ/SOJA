@@ -27,11 +27,13 @@ class BioPage extends StatelessWidget {
               TextFormField(
                 controller: _controller,
                 decoration: textInputDecoration.copyWith(hintText: 'Bio'),
+                style: TextStyle(color: Colors.black),
                 maxLines: 3,
                 onChanged: (val) {
                   bio = val;
                 },
               ),
+
               FlatButton(
 
                 onPressed: ()=> {

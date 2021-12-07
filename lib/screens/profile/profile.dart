@@ -88,6 +88,9 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 90.0),
                     Text(
                       email!,
+                      style: TextStyle(
+                        fontSize: 25.0,
+                      ),
                     ),
                     SizedBox(height: 15.0),
                     Text(
