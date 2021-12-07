@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soja/screens/authenticate/rest.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/misc/FAQ.dart';
 import 'package:soja/screens/misc/Languages.dart';
 import 'package:soja/screens/misc/TermsandConditions.dart';
+import 'package:soja/screens/misc/privacyandsecurity.dart';
+import 'package:soja/screens/wrapper.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
 
@@ -75,13 +78,22 @@ class _SettingPageUIState extends State<SettingPageUI> {
             //Buttons
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
-            buildAccountOption(context, "Change Password"),
-            buildAccountOption(context, "Content Settings"),
-            buildAccountOption(context, "Social"),
-            LanguageWindow(context, "Languages"),
-            buildAccountOption(context, "Privacy and Security"),
 
-            /*FlatButton(onPressed: () {
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Reset()));
+
+            }, child:  Text("Change Password", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),
+           /* buildAccountOption(context, "Content Settings"),
+            buildAccountOption(context, "Social"),
+            LanguageWindow(context, "Languages"),*/
+
+
+            FlatButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagesPage()));
 
             }, child:  Text("Languages", style: TextStyle(
@@ -89,7 +101,16 @@ class _SettingPageUIState extends State<SettingPageUI> {
               fontWeight: FontWeight.w500,
               color: Colors.grey[600],
 
-            ))),*/
+            ))),
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => securityandprivacy()));
+
+            }, child:  Text("Privacy and Security", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),
 
             FlatButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => FAQpage()));
@@ -116,7 +137,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
               children: [
                 Icon(Icons.volume_up_outlined, color: Colors.deepPurpleAccent),
                 SizedBox(width: 10),
-                Text("Notifications", style: TextStyle(
+                Text("General", style: TextStyle(
                     fontSize: 22, fontWeight: FontWeight.bold))
               ],
             ),
@@ -133,8 +154,9 @@ class _SettingPageUIState extends State<SettingPageUI> {
                           borderRadius: BorderRadius.circular(20)
                       )
                   ),
-                  onPressed: () async{
-                    await _auth.signOut();
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
+
                   },
                   child: Text("Sign Out", style: TextStyle(
                       fontSize: 16,
