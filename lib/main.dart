@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           value: AuthService().user,
           catchError: (User, MyUser) => null,
           initialData: null,
+
           child: GetMaterialApp(
             translations: LocalString(),
             locale: Locale('en', 'US'),
