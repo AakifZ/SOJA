@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soja/screens/about/about.dart';
 import 'package:soja/screens/authenticate/rest.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/misc/FAQ.dart';
 import 'package:soja/screens/misc/Languages.dart';
 import 'package:soja/screens/misc/TermsandConditions.dart';
 import 'package:soja/screens/misc/privacyandsecurity.dart';
+import 'package:soja/screens/profile/profile.dart';
 import 'package:soja/screens/wrapper.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
@@ -126,6 +128,26 @@ class _SettingPageUIState extends State<SettingPageUI> {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TermsandConditionsPage()));
 
             }, child:  Text("Terms and Conditions", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),
+
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => About()));
+
+            }, child:  Text("About", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+
+            ))),
+
+            FlatButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+
+            }, child:  Text("Profile", style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600],

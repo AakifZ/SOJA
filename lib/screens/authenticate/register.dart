@@ -27,32 +27,10 @@ class _RegisterState extends State<Register> {
   String password = '';
   String error = '';
 
-  String getEmail() {
-    return email;
-  }
-
-  String getUsername() {
-    return username;
-  }
-
-  String getFirstName() {
-    return firstName;
-  }
-
-  String getLastName() {
-    return lastName;
-  }
-
-  String getDate() {
-    return date;
-  }
-
-  String getGender() {
-    return gender;
-  }
-
-  String getPassword() {
-    return password;
+  void _handleGenderChange(String? value) {
+    setState(() {
+      gender = value!;
+    });
   }
 
   @override
@@ -81,8 +59,8 @@ class _RegisterState extends State<Register> {
           children: <Widget> [
             SizedBox(height: 20.0,),
             TextFormField(
-                style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter Email'),
+                style: TextStyle(color: Colors.black),
               validator: (val) => val!.isEmpty ? 'Enter email' : null,
                 onChanged: (val) {
                   setState(() {
@@ -92,8 +70,8 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter Username'),
+                style: TextStyle(color: Colors.black),
                 validator: (val) => val!.isEmpty ? 'Enter username' : null,
                 onChanged: (val) {
                   setState(() {
@@ -103,8 +81,8 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter First Name'),
+                style: TextStyle(color: Colors.black),
                 validator: (val) => val!.isEmpty ? 'Enter first name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -114,8 +92,8 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Enter Last Name'),
+                style: TextStyle(color: Colors.black),
                 validator: (val) => val!.isEmpty ? 'Enter last name' : null,
                 onChanged: (val) {
                   setState(() {
@@ -125,7 +103,6 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: 20.0,),
             TextFormField(
-                style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Date of Birth'),
                 validator: (val) => val!.isEmpty ? 'Enter date of birth' : null,
                 onChanged: (val) {
@@ -151,31 +128,19 @@ class _RegisterState extends State<Register> {
             Radio<String>(
               value: "Male",
               groupValue: gender,
-              onChanged: (value) {
-                setState(() {
-                  gender = value!;
-                });
-              },
+              onChanged: _handleGenderChange,
             ),
             Text("Male"),
             Radio<String>(
               value: "Female",
               groupValue: gender,
-              onChanged: (value) {
-                setState(() {
-                  gender = value!;
-                });
-              },
+              onChanged: _handleGenderChange,
             ),
             Text("Female"),
             Radio<String>(
               value: "Nonbinary",
               groupValue: gender,
-              onChanged: (value) {
-                setState(() {
-                  gender = value!;
-                });
-              },
+              onChanged: _handleGenderChange,
             ),
             Text("Nonbinary"),
             SizedBox(height: 20.0,),
@@ -187,10 +152,10 @@ class _RegisterState extends State<Register> {
                   textStyle: MaterialStateProperty.all(
                       TextStyle(color: Colors.white))),
               onPressed: () async {
-                if(_formKey.currentState!.validate() && gender.isNotEmpty) {
+                if(_formKey.currentState!.validate()) {
                   setState(() => loading = true);
                   dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender);
-                  if (result == null && gender.isEmpty) {
+                  if (result == null) {
                     setState(() {
                         error = 'please fill the required credentials';
                         loading = false;
