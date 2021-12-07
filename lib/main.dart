@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/wrapper.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
           value: AuthService().user,
           catchError: (User, MyUser) => null,
           initialData: null,
+
           child: GetMaterialApp(
             translations: LocalString(),
             locale: Locale('en', 'US'),
@@ -41,7 +43,45 @@ class MyApp extends StatelessWidget {
           ),
         );
       });
+
   }
+class _HomePageState extends State<HomePage>{
+  late FlutterLocalNotificationsPlugin fltrNotification;
+
+  @override
+  void initState(){
+    super.initState();
+    var androidInitize = new AndroidInitializationSettings("appicon");
+    var iOSinitilize = new IOSInitializationSettings();
+    var initilizationsSettings = new InitializationSettings(androidInitize, iOSinitilize);
+    fltrNotification = new FlutterLocalNotificationsPlugin();
+    fltrNotification.initialize(initilizationsSettings,
+        onSelectNotification: notificationSelected);
+  }
+
+  Future _showNotification() async{
+    var androidDetails = new AndroidNotificationDetails("Channel Id", "Bobby Campos", "this is a description", importance: Importance.Max);
+    var IOSdetails = new IOSNotificationDetails();
+    var generalNotificationDetails = new NotificationDetails(androidDetails, IOSdetails);
+    await fltrNotification.show(0,"Task", "You created a ting", generalNotificationDetails, payload:"Task");
+  }
+
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: Center(
+        child: RaisedButton(onPressed: _showNotification, child: Text("This is a test notification")),
+      ),
+    );
+  }
+  Future notificationSelected(String payload) async{
+    showDialog(context:context,
+    builder: (context) => AlertDialog(
+      content: Text("Notification was Created $payload"),
+    ));
+  }
+}
 
 
 
