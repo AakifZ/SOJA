@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soja/screens/authenticate/rest.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/shared/constants.dart';
 import 'package:soja/shared/loading.dart';
@@ -94,7 +95,13 @@ class _SignInState extends State<SignIn> {
           Text(
             error,
             style: TextStyle(color: Colors.red, fontSize: 14.0),
-          )
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(child: Text('Forgot Password'), onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reset())) ,)
+            ],
+          ),
         ],
         ),
       ),
