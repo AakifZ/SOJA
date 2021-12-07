@@ -9,6 +9,8 @@ import 'package:soja/bio/bio_update.dart';
 import 'package:soja/settings/settings_page.dart';
 
 class Profile extends StatefulWidget {
+  final String? bio;
+  Profile({Key? key, this.bio}) : super (key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -24,6 +26,7 @@ class _ProfileState extends State<Profile> {
     var currentUser = FirebaseAuth.instance.currentUser;
     String? username = currentUser!.displayName;
     String? email = currentUser!.email;
+
 
     pickImage(ImageSource imageType) async {
       try {
@@ -88,7 +91,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: 15.0),
                     Text(
-                      'This is my bio',
+                      "${widget.bio}",
                       style: TextStyle(
                         fontSize: 17.0,
                       ),

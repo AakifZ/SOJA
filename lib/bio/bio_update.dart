@@ -15,6 +15,8 @@ class BioPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _controller = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(title: Text('Update Bio'),),
       body: Container(
@@ -23,6 +25,7 @@ class BioPage extends StatelessWidget {
             children: <Widget> [
               Text('Bio', style: TextStyle(fontSize: 20),),
               TextFormField(
+                controller: _controller,
                 decoration: textInputDecoration.copyWith(hintText: 'Bio'),
                 maxLines: 3,
                 onChanged: (val) {
@@ -38,7 +41,10 @@ class BioPage extends StatelessWidget {
                     {
                       bioService.updatePostData(bio),
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Profile())),
+                          MaterialPageRoute(
+                              builder: (context) => Profile(bio: _controller.text)
+                          )
+                      ),
                     },
                 }, child: Text('Update Bio',
                 style: TextStyle(color: Colors.purple, fontSize: 20,),),
