@@ -7,16 +7,20 @@ import 'package:soja/models/post.dart';
 class DatabaseService {
 
   final String uid;
+
   DatabaseService({ required this.uid });
 
   final CollectionReference userCollection =
-    FirebaseFirestore.instance.collection("users");
+  FirebaseFirestore.instance.collection("users");
 
-  final CollectionReference postCollection = FirebaseFirestore.instance.collection("posts");
+  final CollectionReference postCollection = FirebaseFirestore.instance
+      .collection("posts");
+
   /**
    * This method takes in all of a user's information and inserts it into the 'users' collection in the Firestore database.
    */
-  Future updateUserData(String email, String username, String firstName, String lastName, String DOB, String password, String gender) async {
+  Future updateUserData(String email, String username, String firstName,
+      String lastName, String DOB, String password, String gender) async {
     return await userCollection.doc(uid).set({
       'email': email,
       'username': username,
@@ -27,23 +31,5 @@ class DatabaseService {
       'gender': gender,
       'sojaPoints': 0,
     });
-  }
-
-  List<Post> _postListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
-      return Post(
-        title: doc.get('title') ?? '',
-        content: doc.get('content') ?? '',
-        game: doc.get('game') ?? '',
-        likes: doc.get('likes') ?? 0,
-        dislikes: doc.get('dislikes') ?? 0,
-        user: doc.get('user') ?? ''
-      );
-    }).toList();
-  }
-
-  Stream<List<Post>> get posts {
-    return postCollection.snapshots()
-    .map(_postListFromSnapshot);
   }
 }

@@ -127,7 +127,6 @@ class _RegisterState extends State<Register> {
             TextFormField(
                 style: TextStyle(color: Colors.black),
                 decoration: textInputDecoration.copyWith(hintText: 'Date of Birth'),
-                style: TextStyle(color: Colors.black),
                 validator: (val) => val!.isEmpty ? 'Enter date of birth' : null,
                 onChanged: (val) {
                   setState(() {

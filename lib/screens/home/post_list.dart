@@ -18,7 +18,7 @@ class _PostListState extends State<PostList> {
     posts.forEach((post) {
       print(post.title);
       print(post.content);
-      print(post.game);
+      // print(post.game);
     });
     return Container();
   }
