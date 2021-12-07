@@ -16,16 +16,22 @@ class _PostListState extends State<PostList> {
   @override
   Widget build(BuildContext context) {
     PostService postService = new PostService();
-    postService.getPosts();
-    final posts = Provider.of<List<Post>?>(context) ?? [];
-    posts.forEach((post) {
-      print(post.title);
-      print(post.content);
-      //print(post.game);
-    });
+    //List<Post> posts = postService.getPosts();
     return Container(
-
+      child: getList(),
     );
   }
 
+  Widget getList() {
+    //List<Post> posts = PostService().getPosts();
+    ListView postList = ListView.builder(
+        //itemCount: posts.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            //title: Text(posts[index].title,),
+          );
+        });
+    return postList;
+
+  }
 }
