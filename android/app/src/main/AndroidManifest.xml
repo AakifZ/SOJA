@@ -1,10 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.soja">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+
     <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="soja"
         android:icon="@mipmap/ic_launcher">
-        <activity
+       <receiver android:name="
+   com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+           <intent-filter>
+               <action android:name="android.intent.action.BOOT_COMPLETED"/>
+               <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+           </intent-filter>
+       </receiver>
+       <receiver android:name="
+   com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+       <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
