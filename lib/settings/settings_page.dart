@@ -94,18 +94,18 @@ class _SettingPageUIState extends State<SettingPageUI> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Settings".tr, style: TextStyle(fontSize: 22)),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Home();
-            }));
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //       return Home();
+        //     }));
+        //   },
+        //   icon: Icon(
+        //     Icons.arrow_back,
+        //     color: Colors.white,
+        //
+        //   ),
+        // ),
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
@@ -217,7 +217,10 @@ class _SettingPageUIState extends State<SettingPageUI> {
                       )
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+                    _auth.signOut();
+                    Navigator.pop(context);
+
+                    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignIn()));
 
                   },
                   child: Text("Sign Out", style: TextStyle(
