@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:soja/bio/bio_update.dart';
+import 'package:soja/models/user.dart';
 import 'package:soja/settings/settings_page.dart';
 
 class Profile extends StatefulWidget {
@@ -182,6 +184,20 @@ class _ProfileState extends State<Profile> {
     bool shouldReclip(CustomClipper<Path> oldClipper) {
         return true;
     }
+
+/*    getUsers() async {
+      List<UserProfile> _users = [];
+
+      await FirebaseFirestore.instance.collection("posts")
+          .get().then((querySnapshot) {
+        querySnapshot.docs.forEach((result) {
+          UserProfile user = UserProfile(result.get("uid"), result.get('username'), result.get('bio'));
+          _users.add(user);
+          print(user.content);
+        });
+      });
+      return _users;
+    }*/
 
 
   }

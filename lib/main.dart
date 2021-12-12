@@ -8,7 +8,7 @@ import 'package:soja/services/LocaleString.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
-import 'package:soja/settings/settingspage.dart';
+import 'package:soja/settings/settings_page.dart';
 import 'package:get/get.dart';
 import 'models/user.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
-      builder: (context, ) {
+      builder: (context, _) {
         final themeProvider = Provider.of<ThemeProvider>(context);
         return StreamProvider<MyUser?>.value(
           value: AuthService().user,

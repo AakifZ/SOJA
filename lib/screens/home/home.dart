@@ -109,6 +109,14 @@ class _HomeState extends State<Home> {
                                 itemBuilder: (BuildContext context, int index) {
                                   //List tile / Song row
                                   return ListTile(
+                                    leading: IconButton (
+                                      icon: Icon(Icons.edit),
+                                      color: Colors.black,
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context, MaterialPageRoute(builder: (_) => NewPostPage()));
+                                      },
+                                    ),
                                     tileColor: Colors.white,
                                     title: Text(snapshot.data[index].title,
                                         style: TextStyle(
