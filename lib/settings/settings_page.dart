@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:soja/screens/about/about.dart';
 import 'package:soja/screens/authenticate/rest.dart';
 import 'package:soja/screens/authenticate/sign_in.dart';
@@ -22,6 +25,48 @@ class SettingPageUI extends StatefulWidget {
 class _SettingPageUIState extends State<SettingPageUI> {
 
   final AuthService _auth = AuthService();
+
+  final List locale =[
+    {'name':'ENGLISH','locale': Locale('en','US')},
+    {'name':'Español','locale': Locale('es','SP')},
+    {'name':'हिंदी','locale': Locale('hi','IN')},
+  ];
+
+  updateLanguage(Locale locale){
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  builddialog(BuildContext context){
+    showDialog(context: context,
+        builder: (builder){
+          return AlertDialog(
+            title: Text('Choose Your Language'),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context,index){
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        child: Text(locale[index]['name']),
+                        onTap: (){
+                          print(locale[index]['name']);
+                          updateLanguage(locale[index]['locale']);
+                        },),
+                    );
+                  }, separatorBuilder: (context,index){
+                return Divider(
+                  color: Colors.blue,
+                );
+              }, itemCount: locale.length
+              ),
+            ),
+          );
+        }
+    );
+  }
 
   bool val1 = true;
   bool val2 = true;
@@ -48,7 +93,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings", style: TextStyle(fontSize: 22)),
+        title: Text("Settings".tr, style: TextStyle(fontSize: 22)),
         leading: IconButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -82,10 +127,10 @@ class _SettingPageUIState extends State<SettingPageUI> {
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
 
-            FlatButton(onPressed: () {
+            ElevatedButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Reset()));
 
-            }, child:  Text("Change Password", style: TextStyle(
+            }, child:  Text("Change Password".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600],
@@ -94,24 +139,18 @@ class _SettingPageUIState extends State<SettingPageUI> {
            /* buildAccountOption(context, "Content Settings"),
             buildAccountOption(context, "Social"),
             LanguageWindow(context, "Languages"),*/
-
-
-            FlatButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagesPage()));
-
-            }, child:  Text("Languages", style: TextStyle(
+            ElevatedButton(onPressed: (){
+              builddialog(context);
+            }, child: Text('Language'.tr, style: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
-
             ))),
-            FlatButton(onPressed: () {
+            ElevatedButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => securityandprivacy()));
 
-            }, child:  Text("Privacy and Security", style: TextStyle(
+            }, child:  Text("Privacy and Security".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
+
 
             ))),
 
@@ -125,30 +164,30 @@ class _SettingPageUIState extends State<SettingPageUI> {
 
             ))),
 
-            FlatButton(onPressed: () {
+            ElevatedButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TermsandConditionsPage()));
 
-            }, child:  Text("Terms and Conditions", style: TextStyle(
+            }, child:  Text("Terms and Conditions".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600],
 
             ))),
 
-            FlatButton(onPressed: () {
+            ElevatedButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => About()));
 
-            }, child:  Text("About", style: TextStyle(
+            }, child:  Text("About".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600],
 
             ))),
 
-            FlatButton(onPressed: () {
+            ElevatedButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
 
-            }, child:  Text("Profile", style: TextStyle(
+            }, child:  Text("Profile".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600],
@@ -160,13 +199,13 @@ class _SettingPageUIState extends State<SettingPageUI> {
               children: [
                 Icon(Icons.volume_up_outlined, color: Colors.deepPurpleAccent),
                 SizedBox(width: 10),
-                Text("General", style: TextStyle(
+                Text("General".tr, style: TextStyle(
                     fontSize: 22, fontWeight: FontWeight.bold))
               ],
             ),
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
-            buildNotificationOption("Dark Mode", val1, onChangeFunction1),
+            buildNotificationOption("Dark Mode".tr, val1, onChangeFunction1),
 
             SizedBox(height: 50),
             Center(

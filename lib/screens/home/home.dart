@@ -27,48 +27,6 @@ class _HomeState extends State<Home> {
   }
   final AuthService _auth = AuthService();
 
-  final List locale =[
-    {'name':'ENGLISH','locale': Locale('en','US')},
-    {'name':'Español','locale': Locale('es','SP')},
-    {'name':'हिंदी','locale': Locale('hi','IN')},
-  ];
-
-  updateLanguage(Locale locale){
-    Get.back();
-    Get.updateLocale(locale);
-  }
-
-  builddialog(BuildContext context){
-    showDialog(context: context,
-        builder: (builder){
-          return AlertDialog(
-            title: Text('Choose Your Language'),
-            content: Container(
-              width: double.maxFinite,
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context,index){
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        child: Text(locale[index]['name']),
-                        onTap: (){
-                        print(locale[index]['name']);
-                        updateLanguage(locale[index]['locale']);
-                      },),
-                    );
-                  }, separatorBuilder: (context,index){
-                return Divider(
-                  color: Colors.blue,
-                );
-              }, itemCount: locale.length
-              ),
-            ),
-          );
-        }
-    );
-  }
-
   // final Stream<QuerySnapshot> posts = FirebaseFirestore.instance.collection('posts').snapshots();
 
   @override
@@ -83,9 +41,7 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               Text('hello'.tr, style: TextStyle(fontSize: 32),),
-              ElevatedButton(onPressed: (){
-                  builddialog(context);
-              }, child: Text('Language'.tr)),
+
               Container(
                   margin: EdgeInsets.all(10),
                   child: FutureBuilder(
@@ -189,10 +145,10 @@ class _HomeState extends State<Home> {
   getPosts() async {
     List<Post> _posts = [];
 
-    await FirebaseFirestore.instance.collection("posts")
+    await FirebaseFirestore.instance.collection("posts".tr)
         .get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        Post post = Post(result.get('title'), result.get('content'), result.get('likes'), result.get('dislikes'), result.get('game'), result.get("uid"));
+        Post post = Post(result.get('title'.tr), result.get('content'.tr), result.get('likes'.tr), result.get('dislikes'.tr), result.get('game'.tr), result.get("uid".tr));
         _posts.add(post);
         print(post.content);
       });
