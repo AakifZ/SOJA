@@ -6,14 +6,16 @@ class Post {
   static const LIKES = "likes";
   static const DISLIKES = "dislikes";
   static const GAME = "game";
+  static const UID = "uid";
 
   String title;
   int likes;
   int dislikes;
   String content;
   String game;
+  String? uid;
 
-  Post(this.title, this.content, this.likes, this.dislikes, this.game);
+  Post(this.title, this.content, this.likes, this.dislikes, this.game, this.uid);
 
 /*
   Post.fromSnapshot(DataSnapshot snap)

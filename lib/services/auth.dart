@@ -6,6 +6,9 @@ class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  String currentUID = "";
+
+
   // create user obj based on firebaseuser
   MyUser? _userFromFirebaseUser(User user) {
     return user != null ? MyUser(uid: user.uid) : null;
@@ -31,7 +34,9 @@ class AuthService {
   Future signIn(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
-      User? user = result.user;return _userFromFirebaseUser(user!);
+      User? user = result.user;
+      currentUID = user!.uid;
+      return _userFromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
       return null;
