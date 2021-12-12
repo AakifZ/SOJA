@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
                           if (snapshot.data == null) {
                             return Container(
                               child: Center(
-                                child: Text("Loading..."),
+                                child: Text("Loading... forever"),
                               ),
                             );
                           } else {
@@ -75,16 +75,29 @@ class _HomeState extends State<Home> {
                                 itemCount: snapshot.data.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   //List tile / Song row
-                                  return ListTile(
-                                    leading: IconButton (
-                                      icon: Icon(Icons.edit),
-                                      color: Colors.black,
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context, MaterialPageRoute(builder: (_) => NewPostPage()));
-                                      },
-                                    ),
-                                    tileColor: Colors.white,
+                                  return Card(
+                                    child: Column (
+                                      children: <Widget>[
+                                        ListTile(
+                                          title: Text(snapshot.data[index].title),
+                                          subtitle: Text(snapshot.data[index].content),
+                                          leading: Text(snapshot.data[index].game),
+                                          trailing: Icon(Icons.delete),
+                                        ),
+                                        ListTile(
+                                          title: Text("Testing"),
+                                        ),
+                                        Icon(Icons.edit, color: Colors.black,),
+                                        IconButton( icon: Icon(Icons.edit),
+                                        onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
+                                        } ),
+                                        // Text(snapshot.data[index].title,),
+                                        // Text(snapshot.data[index].content),
+                                        // Text(snapshot.data[index].game),
+                                      ],
+
+                                    /*color: Colors.white,
                                     title: Text(snapshot.data[index].title,
                                         style: TextStyle(
                                             fontFamily: "Trajan Pro",
@@ -101,7 +114,9 @@ class _HomeState extends State<Home> {
                                             color: Color(0xFF303030))),
                                     trailing: Text(snapshot.data[index].game),
                                     onTap: () {
-                                    },
+                                    },*/
+                                    ),
+
                                   );
                                 });
                           }
