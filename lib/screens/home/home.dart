@@ -83,21 +83,27 @@ class _HomeState extends State<Home> {
                                           child: Text(snapshot.data[index].uid),
                                         ),
                                         ListTile(
-                                          title: Text(snapshot.data[index].title),
-                                          subtitle: Text(snapshot.data[index].content),
+                                          title: Text(snapshot.data[index].title, style: TextStyle(fontSize: 20)),
+                                          subtitle: Text(snapshot.data[index].content, style: TextStyle(fontSize: 15),),
                                           trailing: Text(snapshot.data[index].game, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 18.0),),
                                         ),
                                         Container(
                                           height: 40,
                                         ),
+                                        Container(
+                                          color: Colors.white,
+                                          //child: (uid == snapshot.data[index].uid) ? Icon(Icons.edit) : const Text("HIYA"),
+                                        ),
                                         ButtonBar(
                                           children: [
+                                            (uid == snapshot.data[index].uid) ? 
                                             TextButton(onPressed: () {
                                               Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
-                                            }, child: Icon(Icons.edit), ),
+                                            }, child: Icon(Icons.edit),) : const Text(""),
+                                            (uid == snapshot.data[index].uid) ?
                                             TextButton(onPressed: () {
                                               //DELETE POST
-                                            }, child: Icon(Icons.delete)),
+                                            }, child: Icon(Icons.delete)) : const Text(""),
                                             TextButton(onPressed: () {
                                               //Like
                                             }, child: Icon(Icons.thumb_up)),
