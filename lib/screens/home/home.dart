@@ -49,6 +49,7 @@ class _HomeState extends State<Home> {
 
 
     return Scaffold(
+      
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -71,12 +72,15 @@ class _HomeState extends State<Home> {
                           } else {
                             //Once the JSON Data has arrived build the list
                             return ListView.builder(
+                              //LINE 76 makes cards scrollable
+                              physics: PageScrollPhysics(),
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 itemCount: snapshot.data.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   //List tile / Song row
                                   return Card(
+
                                     child: Column (
                                       children: <Widget>[
                                         Card(
@@ -84,7 +88,7 @@ class _HomeState extends State<Home> {
                                         ),
                                         ListTile(
                                           title: Text(snapshot.data[index].title, style: TextStyle(fontSize: 20)),
-                                          subtitle: Text(snapshot.data[index].content, style: TextStyle(fontSize: 15),),
+                                          subtitle: Text(snapshot.data[index].content, style: TextStyle(fontSize: 15, height: 2), ),
                                           trailing: Text(snapshot.data[index].game, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 18.0),),
                                         ),
                                         Container(
@@ -96,7 +100,7 @@ class _HomeState extends State<Home> {
                                         ),
                                         ButtonBar(
                                           children: [
-                                            (uid == snapshot.data[index].uid) ? 
+                                            (uid == snapshot.data[index].uid) ?
                                             TextButton(onPressed: () {
                                               Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
                                             }, child: Icon(Icons.edit),) : const Text(""),
