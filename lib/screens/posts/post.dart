@@ -5,8 +5,9 @@ import 'package:soja/services/auth.dart';
 
 
 class PostService {
-  
-  final CollectionReference postCollection = FirebaseFirestore.instance.collection("posts");
+
+  final CollectionReference postCollection = FirebaseFirestore.instance
+      .collection("posts");
 
   AuthService authService = new AuthService();
 
@@ -22,6 +23,8 @@ class PostService {
 
     });
   }
+}
+
 
 /*  getPosts() {
     List<Post> posts = [];
@@ -40,4 +43,3 @@ class PostService {
     return posts;
     //return postage;
   }*/
-}
