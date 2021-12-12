@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soja/models/post.dart';
 import 'package:soja/services/auth.dart';
@@ -11,15 +12,20 @@ class PostService {
   AuthService authService = new AuthService();
 
 
+
+
   Future updatePostData(String title, String content, String game) async {
+
+      var currentUser = FirebaseAuth.instance.currentUser;
+      print(currentUser!.uid);
+      String uid = currentUser.uid;
     return await postCollection.doc(title).set({
       'title': title,
       'content': content,
       'game': game,
       'likes': 0,
       'dislikes': 0,
-      'uid': authService.currentUID,
-
+      'uid': uid,
     });
   }
 

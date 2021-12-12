@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:soja/models/post.dart';
+import 'package:soja/screens/authenticate/sign_in.dart';
 import 'package:soja/screens/posts/new_post_page.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
@@ -20,10 +22,19 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+
 class _HomeState extends State<Home> {
-  @override
+  String uid = "";
+
+@override
   void initState() {
     getPosts();
+    //_auth.checkLogin();
+    // print("Testing hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    // print("The current uid is: " + _auth.currentUID);
+    var currentUser = FirebaseAuth.instance.currentUser;
+    print(currentUser!.uid);
+    uid = currentUser.uid;
   }
   final AuthService _auth = AuthService();
 
@@ -40,7 +51,7 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Text('hello'.tr, style: TextStyle(fontSize: 32),),
+              Text("SOJA", style: TextStyle(fontSize: 32),),
 
               Container(
                   margin: EdgeInsets.all(10),
@@ -102,6 +113,7 @@ class _HomeState extends State<Home> {
                           );
                         }
                       })),
+              Text("You've reached the end!"),
             ]
           ),
 
