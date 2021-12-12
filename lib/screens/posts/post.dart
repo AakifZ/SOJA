@@ -20,7 +20,8 @@ class PostService {
       print(currentUser!.uid);
       String uid = currentUser.uid;
       DatabaseService databaseService = DatabaseService(uid: uid);
-      //String? username = databaseService.userCollection.doc(currentUser.uid);
+      //String? username = databaseService.userCollection.doc(uid) as String?;
+      //print(username);
     return await postCollection.doc(title).set({
       'title': title,
       'content': content,
