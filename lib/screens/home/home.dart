@@ -184,7 +184,7 @@ class _HomeState extends State<Home> {
     await FirebaseFirestore.instance.collection("posts")
         .get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        Post post = Post(result.get('title'), result.get('content'), result.get('likes'), result.get('dislikes'), result.get('game'));
+        Post post = Post(result.get('title'), result.get('content'), result.get('likes'), result.get('dislikes'), result.get('game'), result.get("uid"));
         _posts.add(post);
         print(post.content);
       });

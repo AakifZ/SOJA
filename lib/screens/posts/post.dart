@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soja/models/post.dart';
+import 'package:soja/services/auth.dart';
 
 
 class PostService {
   
   final CollectionReference postCollection = FirebaseFirestore.instance.collection("posts");
+
+  AuthService authService = new AuthService();
+
 
   Future updatePostData(String title, String content, String game) async {
     return await postCollection.doc(title).set({
@@ -13,7 +17,9 @@ class PostService {
       'content': content,
       'game': game,
       'likes': 0,
-      'dislikes': 0
+      'dislikes': 0,
+      'uid': authService.currentUID,
+
     });
   }
 

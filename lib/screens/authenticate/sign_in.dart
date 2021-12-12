@@ -23,6 +23,7 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
+  String uid = "";
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class _SignInState extends State<SignIn> {
               }
             )
           ],
-      ), body: Container(
+      ), body: SingleChildScrollView(
       padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
       child: Form(
         key: _formKey,
