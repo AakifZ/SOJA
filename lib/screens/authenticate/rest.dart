@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/shared/constants.dart';
 import 'package:soja/shared/loading.dart';
@@ -58,9 +61,12 @@ class _SignInState extends State<Reset> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                    child: Text('Send Request'),
+                    child: Text('Send Request'.tr),
                 onPressed: () {
-                  auth.sendPasswordResetEmail(email: email);
+                  auth.sendPasswordResetEmail(email: email).then((value) {
+                    Get.snackbar("Password reset email sent", "Success" );
+                  }).catchError((onError)=> Get.snackbar("Error in Email", onError.message ));
+
                 },
                 ),
               ],

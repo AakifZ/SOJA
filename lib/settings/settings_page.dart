@@ -27,7 +27,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
   final AuthService _auth = AuthService();
 
   final List locale =[
-    {'name':'ENGLISH','locale': Locale('en','US')},
+    {'name':'English','locale': Locale('en','US')},
     {'name':'Español','locale': Locale('es','SP')},
     {'name':'हिंदी','locale': Locale('hi','IN')},
   ];
@@ -41,7 +41,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
     showDialog(context: context,
         builder: (builder){
           return AlertDialog(
-            title: Text('Choose Your Language'),
+            title: Text('Choose Your Language'.tr),
             content: Container(
               width: double.maxFinite,
               child: ListView.separated(
@@ -119,7 +119,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
                   color: Colors.deepPurpleAccent,
                 ),
                 SizedBox(width: 10),
-                Text("Account", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))
+                Text("Account".tr, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))
               ],
             ),
 
@@ -133,7 +133,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
             }, child:  Text("Change Password".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
+
 
             ))),
            /* buildAccountOption(context, "Content Settings"),
@@ -154,13 +154,13 @@ class _SettingPageUIState extends State<SettingPageUI> {
 
             ))),
 
-            FlatButton(onPressed: () {
+            ElevatedButton(onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => FAQpage()));
 
-            }, child:  Text("FAQ", style: TextStyle(
+            }, child:  Text("FAQ".tr, style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey[600],
+
 
             ))),
 
@@ -170,7 +170,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
             }, child:  Text("Terms and Conditions".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
+
 
             ))),
 
@@ -180,7 +180,6 @@ class _SettingPageUIState extends State<SettingPageUI> {
             }, child:  Text("About".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
 
             ))),
 
@@ -190,7 +189,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
             }, child:  Text("Profile".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
+
 
             ))),
 
@@ -220,7 +219,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
 
                   },
-                  child: Text("Sign Out", style: TextStyle(
+                  child: Text("Logout".tr, style: TextStyle(
                       fontSize: 16,
                       letterSpacing: 2.2
                   )),
@@ -260,86 +259,5 @@ class _SettingPageUIState extends State<SettingPageUI> {
     );
   }
 
-  GestureDetector buildAccountOption(BuildContext context, String title) {
-      return GestureDetector(
-          onTap: () {
-            showDialog(context: context, builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(title),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Option 1"),
-                    Text("Option 2")
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("Close"))
-                ],
-              );
-            });
-          },
-          child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(title, style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey[600]
-                    )),
-                    Icon(Icons.arrow_forward_ios, color: Colors.grey)
-                  ]
-              )
-          )
 
-      );
-
-  }
-  GestureDetector LanguageWindow(BuildContext context, String title) {
-    return GestureDetector(
-        onTap: () {
-          showDialog(context: context, builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(title),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("English"),
-                  Text("Spanish"),
-                  Text("French")
-                ],
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text("Close"))
-              ],
-            );
-          });
-        },
-        child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(title, style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[600]
-                  )),
-                  Icon(Icons.arrow_forward_ios, color: Colors.grey)
-                ]
-            )
-        )
-    );
-
-  }
 }
