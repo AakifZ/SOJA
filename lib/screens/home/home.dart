@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 import 'package:soja/models/post.dart';
 import 'package:soja/screens/authenticate/sign_in.dart';
@@ -53,7 +54,7 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Text("SOJA", style: TextStyle(fontSize: 32),),
+              Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child: Text("SOJA", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),)),
 
               Container(
                   margin: EdgeInsets.all(10),
@@ -161,7 +162,7 @@ class _HomeState extends State<Home> {
                           );
                         }
                       })),
-              Text("You've reached the end!"),
+              Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20), child: Text("You've reached the end!"),),
             ]
           ),
 
