@@ -15,6 +15,7 @@ import '../../main.dart';
 import '../posts/post.dart';
 import 'post_list.dart';
 import 'package:soja/models/post.dart';
+import 'package:share/share.dart';
 
 class Home extends StatefulWidget {
 
@@ -84,16 +85,36 @@ class _HomeState extends State<Home> {
                                         ListTile(
                                           title: Text(snapshot.data[index].title),
                                           subtitle: Text(snapshot.data[index].content),
-                                          leading: Text(snapshot.data[index].game),
-                                          trailing: Icon(Icons.delete),
+                                          trailing: Text(snapshot.data[index].game, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 18.0),),
                                         ),
-                                        ListTile(
-                                          title: Text("Testing"),
+                                        Container(
+                                          height: 40,
                                         ),
-                                        IconButton( icon: Icon(Icons.edit),
-                                        onPressed: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
-                                        } ),
+                                        ButtonBar(
+                                          children: [
+                                            TextButton(onPressed: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
+                                            }, child: Icon(Icons.edit), ),
+                                            TextButton(onPressed: () {
+                                              //DELETE POST
+                                            }, child: Icon(Icons.delete)),
+                                            TextButton(onPressed: () {
+                                              //Like
+                                            }, child: Icon(Icons.thumb_up)),
+                                            TextButton(onPressed: (){
+                                              //Dislike
+                                            }, child: Icon(Icons.thumb_down),),
+                                            TextButton(onPressed: () {
+                                              //SHARE
+
+                                              share(context, snapshot.data[index]);
+                                            }, child: Icon(Icons.share)),
+                                          ],
+                                        ),
+                                        // IconButton( icon: Icon(Icons.edit),
+                                        // onPressed: () {
+                                        //   Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
+                                        // } ),
                                         // Text(snapshot.data[index].title,),
                                         // Text(snapshot.data[index].content),
                                         // Text(snapshot.data[index].game),
@@ -183,5 +204,14 @@ class _HomeState extends State<Home> {
       });
     });
     return _posts;
+  }
+
+  void share(BuildContext context, Post post) {
+    //final RenderBox? box = context.findRenderObject();
+    final String text = "${post.title} - ${post.content}";
+
+    Share.share(text,
+    subject: post.title);
+    //sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,);
   }
 }
