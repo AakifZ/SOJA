@@ -78,6 +78,9 @@ class _HomeState extends State<Home> {
                                   return Card(
                                     child: Column (
                                       children: <Widget>[
+                                        Card(
+                                          child: Text(snapshot.data[index].uid),
+                                        ),
                                         ListTile(
                                           title: Text(snapshot.data[index].title),
                                           subtitle: Text(snapshot.data[index].content),
@@ -87,7 +90,6 @@ class _HomeState extends State<Home> {
                                         ListTile(
                                           title: Text("Testing"),
                                         ),
-                                        Icon(Icons.edit, color: Colors.black,),
                                         IconButton( icon: Icon(Icons.edit),
                                         onPressed: () {
                                           Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
