@@ -46,6 +46,23 @@ class PostService {
     //return await postCollection.doc(postDocumentID).delete();
   }
 
+  Future updateData(String documentId, String title, String content, String game) async {
+
+    var currentUser = FirebaseAuth.instance.currentUser;
+    print(currentUser!.uid);
+    String uid = currentUser.uid;
+    DatabaseService databaseService = DatabaseService(uid: uid);
+    //String? username = databaseService.userCollection.doc(uid) as String?;
+    //print(username);
+    return await postCollection.doc(documentId).update({
+      'title': title,
+      'content': content,
+      'game': game,
+      //'username': username,
+    });
+  }
+
+
   getPostCollectionSize() {
     int size = 0;
     postCollection.get().then((value) => size = value.size);
