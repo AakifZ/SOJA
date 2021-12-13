@@ -111,17 +111,35 @@ class _HomeState extends State<Home> {
                                             (uid == snapshot.data[index].uid) ?
                                             TextButton(onPressed: () {
                                               //DELETE POST
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return AlertDialog(
+                                                        title: Text("Are you sure you want to delete this post?"),
+                                                        actions: [
+                                                          FlatButton(onPressed: () {
+                                                            Navigator.pop(context);
+                                                          }, child: Text("Cancel")),
+                                                          FlatButton(onPressed: (){
+                                                            postService.deleteData(snapshot.data[index].documentID).then((value) => setState(() {}));
+                                                            Fluttertoast.showToast(
+                                                                msg: "Post Successfully Deleted!",
+                                                                toastLength: Toast.LENGTH_SHORT,
+                                                                gravity: ToastGravity.CENTER,
+                                                                timeInSecForIosWeb: 1,
+                                                                backgroundColor: Colors.purple,
+                                                                textColor: Colors.white,
+                                                                fontSize: 16.0
+                                                            );
+                                                            Navigator.pop(context);
+                                                          }, child: Text("Delete", style: TextStyle(color: Colors.red),))
+                                                        ]
+                                                    );
+                                                  });
+
                                               print("The id is: " + snapshot.data[index].documentID);
-                                              postService.deleteData(snapshot.data[index].documentID).then((value) => setState(() {}));
-                                              Fluttertoast.showToast(
-                                                  msg: "Post Successfully Deleted!",
-                                                  toastLength: Toast.LENGTH_SHORT,
-                                                  gravity: ToastGravity.CENTER,
-                                                  timeInSecForIosWeb: 1,
-                                                  backgroundColor: Colors.purple,
-                                                  textColor: Colors.white,
-                                                  fontSize: 16.0
-                                              );
+
+
                                             }, child: Icon(Icons.delete)) : const Text(""),
                                             TextButton(onPressed: () {
                                               //Like
