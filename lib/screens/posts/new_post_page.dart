@@ -67,9 +67,15 @@ class _NewPostPageState extends State<NewPostPage> {
                     postService.updatePostData(title, content, game)
                         .then((value) => {
                           print("Posted Successfully"),
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()))
+                      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
+                      Navigator.pop(context, () {
+                        setState(() {
+
+                        });
+                      }),
                   })
                         .catchError((error) => {
+                          print(error),
                           setState(() {
                             this.error = 'Could not post!';
                           }),

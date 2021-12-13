@@ -32,4 +32,10 @@ class DatabaseService {
       'sojaPoints': 0,
     });
   }
+
+  Future getUsername(String uid) async {
+    print( userCollection.firestore.doc("username").id);
+    print( userCollection.firestore.doc("username"));
+
+  }
 }
