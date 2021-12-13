@@ -42,6 +42,7 @@ class PostService {
   }
 
   Future deleteData(String postDocumentID) async {
+    return await postCollection.doc(postDocumentID).delete();
     //return await postCollection.doc(postDocumentID).delete();
   }
 

@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:soja/screens/authenticate/sign_in.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/posts/post.dart';
@@ -66,6 +67,13 @@ class _NewPostPageState extends State<NewPostPage> {
                   {
                     postService.updatePostData(title, content, game)
                         .then((value) => {
+                            Fluttertoast.showToast(
+                            msg: "Posed Successfully!",
+                            timeInSecForIosWeb: 3,
+                            backgroundColor: Colors.purple,
+                            textColor: Colors.white,
+                            fontSize: 30.0
+                            ),
                           print("Posted Successfully"),
                       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
                       Navigator.pop(context, () {
