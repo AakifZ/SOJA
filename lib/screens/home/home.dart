@@ -39,6 +39,7 @@ class _HomeState extends State<Home> {
     uid = currentUser.uid;
   }
   final AuthService _auth = AuthService();
+  final PostService postService = new PostService();
 
   // final Stream<QuerySnapshot> posts = FirebaseFirestore.instance.collection('posts').snapshots();
 
@@ -108,6 +109,8 @@ class _HomeState extends State<Home> {
                                             (uid == snapshot.data[index].uid) ?
                                             TextButton(onPressed: () {
                                               //DELETE POST
+                                              print("The id is: " + snapshot.data[index].id);
+                                              postService.deleteData(snapshot.data[index]);
                                             }, child: Icon(Icons.delete)) : const Text(""),
                                             TextButton(onPressed: () {
                                               //Like
@@ -195,7 +198,8 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NewPostPage()));
+            Navigator.push( context, MaterialPageRoute( builder: (context) => NewPostPage()), ).then((value) => setState(() {}));
+
           },
           child: Icon(Icons.edit),
           backgroundColor: Colors.purple,
@@ -209,7 +213,7 @@ class _HomeState extends State<Home> {
     await FirebaseFirestore.instance.collection("posts".tr)
         .get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        Post post = Post(result.get('title'.tr), result.get('content'.tr), result.get('likes'.tr), result.get('dislikes'.tr), result.get('game'.tr), result.get("uid".tr));
+        Post post = Post(result.get("documentID"), result.get('title'.tr), result.get('content'.tr), result.get('likes'.tr), result.get('dislikes'.tr), result.get('game'.tr), result.get("uid".tr));
         _posts.add(post);
         print(post.content);
       });
