@@ -19,6 +19,7 @@ import 'post_list.dart';
 import 'package:soja/models/post.dart';
 import 'package:share/share.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:like_button/like_button.dart';
 
 
 class Home extends StatefulWidget {
@@ -153,6 +154,14 @@ class _HomeState extends State<Home> {
 
                                               share(context, snapshot.data[index]);
                                             }, child: Icon(Icons.share)),
+                                            LikeButton(
+                                              likeBuilder:(){
+                                                return Icon(Icons.home,
+                                                ),
+                                              },
+
+                                            ),
+
                                           ],
                                         ),
                                         // IconButton( icon: Icon(Icons.edit),
