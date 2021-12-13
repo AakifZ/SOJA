@@ -148,16 +148,35 @@ class _HomeState extends State<Home> {
                                                 return Icon(
                                                   Icons.thumb_up,
                                                   color: isLiked ? Colors.deepPurpleAccent[100]: Colors.grey,
+
                                                 );
                                               },
 
+                                              likeCount: 665,
+                                              countBuilder: (int count, bool isLiked, String text) {
+                                                var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
+                                                Widget result;
+                                                if (count == 0) {
+                                                  result = Text(
+                                                    "like",
+                                                    style: TextStyle(color: color),
+                                                  );
+                                                } else
+                                                  result = Text(
+                                                    text,
+                                                    style: TextStyle(color: color),
+                                                  );
+                                                return result;
+                                              },
+
                                             ),
+
                                             // TextButton(onPressed: () {
                                             //   //Like
                                             // }, child: Icon(Icons.thumb_up)),
-                                            TextButton(onPressed: (){
-                                              //Dislike
-                                            }, child: Icon(Icons.thumb_down),),
+                                            // TextButton(onPressed: (){
+                                            //   //Dislike
+                                            // }, child: Icon(Icons.thumb_down),),
                                             TextButton(onPressed: () {
                                               //SHARE
 
