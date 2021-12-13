@@ -158,7 +158,7 @@ class _HomeState extends State<Home> {
                                                 );
                                               },
 
-                                              likeCount: 665,
+                                              likeCount: snapshot.data[index].likes,
                                               countBuilder: (int? count, bool isLiked, String text) {
                                                 var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
                                                 Widget result;
