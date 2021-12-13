@@ -17,6 +17,8 @@ import '../posts/post.dart';
 import 'post_list.dart';
 import 'package:soja/models/post.dart';
 import 'package:share/share.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class Home extends StatefulWidget {
 
@@ -109,8 +111,17 @@ class _HomeState extends State<Home> {
                                             (uid == snapshot.data[index].uid) ?
                                             TextButton(onPressed: () {
                                               //DELETE POST
-                                              print("The id is: " + snapshot.data[index].id);
-                                              postService.deleteData(snapshot.data[index]);
+                                              print("The id is: " + snapshot.data[index].documentID);
+                                              postService.deleteData(snapshot.data[index].documentID).then((value) => setState(() {}));
+                                              Fluttertoast.showToast(
+                                                  msg: "Post Successfully Deleted!",
+                                                  toastLength: Toast.LENGTH_SHORT,
+                                                  gravity: ToastGravity.CENTER,
+                                                  timeInSecForIosWeb: 1,
+                                                  backgroundColor: Colors.purple,
+                                                  textColor: Colors.white,
+                                                  fontSize: 16.0
+                                              );
                                             }, child: Icon(Icons.delete)) : const Text(""),
                                             TextButton(onPressed: () {
                                               //Like
