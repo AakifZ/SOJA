@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Post {
+  static const DOCUMENTID = 'documentID';
   static const TITLE = "title";
   static const CONTENT = "content";
   static const LIKES = "likes";
@@ -8,6 +9,7 @@ class Post {
   static const GAME = "game";
   static const UID = "uid";
 
+  String documentID;
   String title;
   int likes;
   int dislikes;
@@ -15,7 +17,7 @@ class Post {
   String game;
   String? uid;
 
-  Post(this.title, this.content, this.likes, this.dislikes, this.game, this.uid);
+  Post(this.documentID, this.title, this.content, this.likes, this.dislikes, this.game, this.uid);
 
 /*
   Post.fromSnapshot(DataSnapshot snap)

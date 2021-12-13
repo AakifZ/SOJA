@@ -8,7 +8,6 @@ class AuthService {
 
   String currentUID = "";
 
-
   // create user obj based on firebaseuser
   MyUser? _userFromFirebaseUser(User user) {
     return user != null ? MyUser(uid: user.uid) : null;
@@ -17,6 +16,14 @@ class AuthService {
   // auth change user stream
   Stream<MyUser?> get user {
     return _auth.authStateChanges().map((User? user) => _userFromFirebaseUser(user!));
+  }
+
+  checkLogin() {
+    if(currentUID.length == 0) {
+      signOut();
+    }else {
+      print(currentUID);
+    }
   }
 
   // sign in anon
@@ -36,6 +43,7 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
       currentUID = user!.uid;
+      print("The current uid is: " + currentUID);
       return _userFromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
