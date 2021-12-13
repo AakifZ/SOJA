@@ -143,9 +143,18 @@ class _HomeState extends State<Home> {
 
 
                                             }, child: Icon(Icons.delete)) : const Text(""),
-                                            TextButton(onPressed: () {
-                                              //Like
-                                            }, child: Icon(Icons.thumb_up)),
+                                            LikeButton(
+                                              likeBuilder: (bool isLiked) {
+                                                return Icon(
+                                                  Icons.thumb_up,
+                                                  color: isLiked ? Colors.purple[400]: Colors.grey,
+                                                );
+                                              },
+
+                                            ),
+                                            // TextButton(onPressed: () {
+                                            //   //Like
+                                            // }, child: Icon(Icons.thumb_up)),
                                             TextButton(onPressed: (){
                                               //Dislike
                                             }, child: Icon(Icons.thumb_down),),
@@ -154,13 +163,7 @@ class _HomeState extends State<Home> {
 
                                               share(context, snapshot.data[index]);
                                             }, child: Icon(Icons.share)),
-                                            LikeButton(
-                                              likeBuilder:(){
-                                                return Icon(Icons.home,
-                                                ),
-                                              },
 
-                                            ),
 
                                           ],
                                         ),
