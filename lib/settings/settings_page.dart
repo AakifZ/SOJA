@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:soja/screens/about/about.dart';
+import 'package:soja/screens/authenticate/deleteaccount.dart';
 import 'package:soja/screens/authenticate/rest.dart';
 import 'package:soja/screens/authenticate/sign_in.dart';
 import 'package:soja/screens/home/home.dart';
@@ -187,6 +188,17 @@ class _SettingPageUIState extends State<SettingPageUI> {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
 
             }, child:  Text("Profile".tr, style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+
+
+            ))),
+
+
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => deleteAccount()));
+
+            }, child:  Text("Delete Account".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
 
