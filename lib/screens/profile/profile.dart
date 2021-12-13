@@ -28,6 +28,7 @@ class _ProfileState extends State<Profile> {
     var currentUser = FirebaseAuth.instance.currentUser;
     String? username = currentUser!.displayName;
     String? email = currentUser.email;
+    print(currentUser.uid);
 
 
     pickImage(ImageSource imageType) async {

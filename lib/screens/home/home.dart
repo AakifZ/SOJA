@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:soja/models/post.dart';
 import 'package:soja/screens/authenticate/sign_in.dart';
 import 'package:soja/screens/posts/new_post_page.dart';
+import 'package:soja/screens/posts/update_post.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
 import 'package:soja/services/changeTheme.dart';
@@ -106,7 +107,7 @@ class _HomeState extends State<Home> {
                                           children: [
                                             (uid == snapshot.data[index].uid) ?
                                             TextButton(onPressed: () {
-                                              Navigator.push(context, MaterialPageRoute(builder: (_) => NewPostPage()));
+                                              Navigator.push(context, MaterialPageRoute(builder: (_) => UpdatePost(documentId: snapshot.data[index].documentID)));
                                             }, child: Icon(Icons.edit),) : const Text(""),
                                             (uid == snapshot.data[index].uid) ?
                                             TextButton(onPressed: () {
