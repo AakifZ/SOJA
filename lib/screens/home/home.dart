@@ -147,7 +147,7 @@ class _HomeState extends State<Home> {
                                               likeBuilder: (bool isLiked) {
                                                 return Icon(
                                                   Icons.thumb_up,
-                                                  color: isLiked ? Colors.purple[400]: Colors.grey,
+                                                  color: isLiked ? Colors.deepPurpleAccent[100]: Colors.grey,
                                                 );
                                               },
 
