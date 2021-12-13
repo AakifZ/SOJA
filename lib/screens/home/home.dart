@@ -159,7 +159,7 @@ class _HomeState extends State<Home> {
                                               },
 
                                               likeCount: 665,
-                                              countBuilder: (int count, bool isLiked, String text) {
+                                              countBuilder: (int? count, bool isLiked, String text) {
                                                 var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
                                                 Widget result;
                                                 if (count == 0) {
