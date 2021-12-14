@@ -22,6 +22,7 @@ class _RegisterState extends State<Register> {
   String username = '';
   String firstName = '';
   String lastName = '';
+  String bio = '';
   String date = '';
   String gender = '';
   String password = '';
@@ -154,7 +155,7 @@ class _RegisterState extends State<Register> {
               onPressed: () async {
                 if(_formKey.currentState!.validate()) {
                   setState(() => loading = true);
-                  dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender);
+                  dynamic result = await _auth.register(email, username, firstName, lastName, date, password, gender, bio);
                   if (result == null) {
                     setState(() {
                         error = 'please fill the required credentials';
