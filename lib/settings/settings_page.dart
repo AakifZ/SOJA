@@ -184,7 +184,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
             ))),
 
             ElevatedButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Profile())).then((value) => setState(() {}));
 
             }, child:  Text("Profile".tr, style: TextStyle(
               fontSize: 20,

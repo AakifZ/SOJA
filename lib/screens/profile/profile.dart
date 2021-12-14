@@ -55,7 +55,11 @@ class _ProfileState extends State<Profile> {
           title: Text("Profile", style: TextStyle(fontSize: 22)),
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, () {
+                setState(() {
+
+                });
+              });
             },
             icon: Icon(
               Icons.arrow_back,
@@ -151,7 +155,8 @@ class _ProfileState extends State<Profile> {
                                   onTap: () {
                                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                                       return BioPage();
-                                    }));
+                                    })).then((value) => setState(() {}));
+
                                   },
                                   child: Center(
                                     child: Text(
