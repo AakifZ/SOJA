@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:soja/models/post.dart';
 import 'package:soja/screens/authenticate/sign_in.dart';
 import 'package:soja/screens/posts/new_post_page.dart';
+import 'package:soja/screens/posts/open_post.dart';
 import 'package:soja/screens/posts/update_post.dart';
 import 'package:soja/services/MyThemes.dart';
 import 'package:soja/services/auth.dart';
@@ -19,6 +20,7 @@ import 'post_list.dart';
 import 'package:soja/models/post.dart';
 import 'package:share/share.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:like_button/like_button.dart';
 
 
 class Home extends StatefulWidget {
@@ -40,6 +42,8 @@ class _HomeState extends State<Home> {
     var currentUser = FirebaseAuth.instance.currentUser;
     print(currentUser!.uid);
     uid = currentUser.uid;
+    DatabaseService databaseService = new DatabaseService(uid: uid);
+    databaseService.getUsername(uid);
   }
   final AuthService _auth = AuthService();
   final PostService postService = new PostService();
@@ -51,7 +55,6 @@ class _HomeState extends State<Home> {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
     ? 'DarkTheme'
     : 'LightTheme';
-
 
     return Scaffold(
       
@@ -89,20 +92,24 @@ class _HomeState extends State<Home> {
                                     child: Column (
                                       children: <Widget>[
                                         Card(
-                                          child: Text(snapshot.data[index].uid),
+                                          //child: Text(snapshot.data[index].uid),
+
                                         ),
                                         ListTile(
+                                          onTap: (){
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => OpenPost(snapshot.data[index].title, snapshot.data[index].content, snapshot.data[index].game, snapshot.data[index].documentID)));
+                                          },
                                           title: Text(snapshot.data[index].title, style: TextStyle(fontSize: 20)),
                                           subtitle: Text(snapshot.data[index].content, style: TextStyle(fontSize: 15, height: 2), ),
                                           trailing: Text(snapshot.data[index].game, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 18.0),),
                                         ),
-                                        Container(
+                                       /* Container(
                                           height: 40,
                                         ),
                                         Container(
                                           color: Colors.white,
                                           //child: (uid == snapshot.data[index].uid) ? Icon(Icons.edit) : const Text("HIYA"),
-                                        ),
+                                        ),*/
                                         ButtonBar(
                                           children: [
                                             (uid == snapshot.data[index].uid) ?
@@ -142,17 +149,47 @@ class _HomeState extends State<Home> {
 
 
                                             }, child: Icon(Icons.delete)) : const Text(""),
-                                            TextButton(onPressed: () {
-                                              //Like
-                                            }, child: Icon(Icons.thumb_up)),
-                                            TextButton(onPressed: (){
-                                              //Dislike
-                                            }, child: Icon(Icons.thumb_down),),
+                                            LikeButton(
+                                              likeBuilder: (bool isLiked) {
+                                                return Icon(
+                                                  Icons.thumb_up,
+                                                  color: isLiked ? Colors.deepPurpleAccent[100]: Colors.grey,
+
+                                                );
+                                              },
+
+                                              likeCount: snapshot.data[index].likes,
+                                              countBuilder: (int? count, bool isLiked, String text) {
+                                                var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
+                                                Widget result;
+                                                if (count == 0) {
+                                                  result = Text(
+                                                    "like",
+                                                    style: TextStyle(color: color),
+                                                  );
+                                                } else
+                                                  result = Text(
+                                                    text,
+                                                    style: TextStyle(color: color),
+                                                  );
+                                                return result;
+                                              },
+
+                                            ),
+
+                                            // TextButton(onPressed: () {
+                                            //   //Like
+                                            // }, child: Icon(Icons.thumb_up)),
+                                            // TextButton(onPressed: (){
+                                            //   //Dislike
+                                            // }, child: Icon(Icons.thumb_down),),
                                             TextButton(onPressed: () {
                                               //SHARE
 
                                               share(context, snapshot.data[index]);
                                             }, child: Icon(Icons.share)),
+
+
                                           ],
                                         ),
                                         // IconButton( icon: Icon(Icons.edit),
