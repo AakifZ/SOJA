@@ -60,7 +60,11 @@ class _BioPageState extends State<BioPage> {
                           dataService.updateBio(currentUser!.uid, bio)
                               .then((value) => {
                             print("Posted Successfully"),
-                            Navigator.pop(context)
+                              Navigator.pop(context, () {
+                                setState(() {
+
+                                });
+                              })
                           })
 
                               .catchError((error) => {
