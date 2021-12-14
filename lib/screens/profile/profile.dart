@@ -20,15 +20,22 @@ class Profile extends StatefulWidget {
 
 
 class _ProfileState extends State<Profile> {
+  ImagePicker image = ImagePicker();
   File? pickedImage;
+  getImage() async {
+    var img = await image.pickImage(source: ImageSource.gallery);
+    setState(() {
+      pickedImage = File(img!.path);
+    });
+  }
+
+  String? imgURL;
+
 
   @override
   Widget build(BuildContext context) {
 
     var currentUser = FirebaseAuth.instance.currentUser;
-    String? username = currentUser!.displayName;
-    String? email = currentUser.email;
-    print(currentUser.uid);
 
 
     pickImage(ImageSource imageType) async {
@@ -36,6 +43,7 @@ class _ProfileState extends State<Profile> {
         final photo = await ImagePicker().pickImage(source: imageType);
         if (photo == null) return;
         final tempImage = File(photo.path);
+        print(photo.path);
         setState(() {
           pickedImage = tempImage;
         });
@@ -43,7 +51,6 @@ class _ProfileState extends State<Profile> {
         debugPrint(error.toString());
       }
     }
-
 
     return Scaffold(
         appBar: AppBar(
@@ -61,106 +68,114 @@ class _ProfileState extends State<Profile> {
             ),
           ),
         ),
-          body: new Stack(
-            children: <Widget>[
-              ClipPath(
-                child: Container(
-                    color: Colors.purple.withOpacity(0.8)
-                ),
-                clipper: getClipper(),
-              ),
-              Positioned(
-                width: 350.0,
-                top: MediaQuery.of(context).size.height / 5,
-                child:Column(
-                  children: <Widget>[
-                        ClipOval(
-                          child: pickedImage != null
-                              ? Image.file(
-                            pickedImage!,
-                          width: 170,
-                          height: 170,
-                          fit: BoxFit.cover,
-                        ): Image.network(
-                          'https://en.meming.world/images/en/thumb/b/bc/Mike_Wazowski-Sulley_Face_Swap.jpg/300px-Mike_Wazowski-Sulley_Face_Swap.jpg',
-                          width: 170,
-                          height: 170,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    SizedBox(height: 90.0),
-                    Text(
-                      email!,
-                      style: TextStyle(
-                        fontSize: 25.0,
-                      ),
+          body: FutureBuilder<DocumentSnapshot>(
+            future: FirebaseFirestore.instance.collection('users').doc(currentUser!.uid).get(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return new Text("Loading");
+              }
+              return new Stack(
+                children: <Widget>[
+                  ClipPath(
+                    child: Container(
+                        color: Colors.purple.withOpacity(0.8)
                     ),
-                    SizedBox(height: 15.0),
-                    Text(
-                      "${widget.bio}",
-                      style: TextStyle(
-                        fontSize: 17.0,
-                      ),
-                    ),
-                    SizedBox(height: 25.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget> [
-                        Container(
-                          height: 30.0,
-                          width: 95.0,
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20.0),
-                            shadowColor: Colors.greenAccent,
-                            color: Colors.green,
-                            elevation: 7.0,
-                            child: GestureDetector(
-                              onTap: () {
-                                pickImage(ImageSource.gallery);
-                              },
-                              child: Center(
-                                child: Text(
-                                  'Edit Image',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
+                    clipper: getClipper(),
+                  ),
+                  Positioned(
+                    width: 350.0,
+                    top: MediaQuery.of(context).size.height / 5,
+                    child:Column(
+                      children: <Widget>[
+                            ClipOval(
+                              child: pickedImage != null
+                                  ? Image.file(
+                                pickedImage!,
+                              width: 170,
+                              height: 170,
+                              fit: BoxFit.cover,
+                            ): Image.network(
+                              'https://en.meming.world/images/en/thumb/b/bc/Mike_Wazowski-Sulley_Face_Swap.jpg/300px-Mike_Wazowski-Sulley_Face_Swap.jpg',
+                              width: 170,
+                              height: 170,
+                              fit: BoxFit.cover,
                             ),
+                          ),
+                        SizedBox(height: 90.0),
+                        Text(
+                          snapshot.data!['username'],
+                          style: TextStyle(
+                            fontSize: 25.0,
+                          ),
+                        ),
+                        SizedBox(height: 15.0),
+                        Text(
+                          snapshot.data!['bio'],
+                          style: TextStyle(
+                            fontSize: 17.0,
                           ),
                         ),
                         SizedBox(height: 25.0),
-                        Container(
-                          height: 30.0,
-                          width: 95.0,
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20.0),
-                            shadowColor: Colors.redAccent,
-                            color: Colors.red,
-                            elevation: 7.0,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                  return BioPage();
-                                }));
-                              },
-                              child: Center(
-                                child: Text(
-                                  'Edit Bio',
-                                  style: TextStyle(
-                                    color: Colors.white,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget> [
+                            Container(
+                              height: 30.0,
+                              width: 95.0,
+                              child: Material(
+                                borderRadius: BorderRadius.circular(20.0),
+                                shadowColor: Colors.greenAccent,
+                                color: Colors.green,
+                                elevation: 7.0,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    pickImage(ImageSource.gallery);
+                                  },
+                                  child: Center(
+                                    child: Text(
+                                      'Edit Image',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                            SizedBox(height: 25.0),
+                            Container(
+                              height: 30.0,
+                              width: 95.0,
+                              child: Material(
+                                borderRadius: BorderRadius.circular(20.0),
+                                shadowColor: Colors.redAccent,
+                                color: Colors.red,
+                                elevation: 7.0,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                      return BioPage();
+                                    }));
+                                  },
+                                  child: Center(
+                                    child: Text(
+                                      'Edit Bio',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    ],
-                   ),
-              )
-            ],
+                        ],
+                       ),
+                  )
+                ],
+              );
+            }
           )
 
       );
@@ -168,7 +183,6 @@ class _ProfileState extends State<Profile> {
     }
 
   }
-
 
 
   class getClipper extends CustomClipper<Path> {

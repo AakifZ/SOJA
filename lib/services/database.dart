@@ -33,6 +33,12 @@ class DatabaseService {
     });
   }
 
+  Future updateBio(String uid, String bio) async {
+    return await userCollection.doc(uid).update({
+      'bio': bio
+    });
+  }
+
   Future getUsername(String uid) async {
     print( userCollection.firestore.doc("username").id);
     print( userCollection.firestore.doc("username"));
