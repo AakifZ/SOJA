@@ -61,8 +61,8 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child: Text("SOJA", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),)),
-
+              //Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child: Text("SOJA", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),)),
+              Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child: Image(image: AssetImage('assets/sojalinked.png'), height: 50,),),
               Container(
                   margin: EdgeInsets.all(10),
                   child: FutureBuilder(
