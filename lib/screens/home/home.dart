@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
     uid = currentUser.uid;
     DatabaseService databaseService = new DatabaseService(uid: uid);
     databaseService.getUsername(uid);
-  }
+}
   final AuthService _auth = AuthService();
   final PostService postService = new PostService();
 
@@ -276,7 +276,6 @@ class _HomeState extends State<Home> {
 
   getPosts() async {
     List<Post> _posts = [];
-
     await FirebaseFirestore.instance.collection("posts".tr)
         .get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
