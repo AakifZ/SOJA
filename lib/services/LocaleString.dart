@@ -40,7 +40,33 @@ class LocalString extends Translations{
       'Edit Bio': 'Editar Biografia',
       'Edit Image': 'Editar Foto',
       'bio': 'biografia',
-      'username': 'nombre de usario'
+      'username': 'nombre de usario',
+
+      'Account Deleted!': 'Cuenta Borro!',
+      'Delete Account': 'Borrar Acuenta',
+      'Delete Account?': 'Borrar Acuenta?',
+      'Q: What platform SOJA is available on?': 'Q: ¿En qué plataforma está disponible SOJA?',
+      'A: Platforms currently available are iOS and Android.': 'A: Las plataformas disponibles actualmente son iOS y Android.',
+      'Q: What type of games are we allowed to talk about?': 'Q: ¿De qué tipo de juegos podemos hablar?',
+      'A: You can talk about any game you like!': 'A: ¡Puedes hablar sobre cualquier juego que te guste!',
+      'Q: How friendly is the community? We provide users the most friendly experience to everyone.': 'Q: ¿Qué tan amigable es la comunidad? Brindamos a los usuarios la experiencia más amigable para todos.',
+      'Privacy: We take our privacy very seriously like Apple, no data or information will be spread to third-party apps or websites. If there are any concerns please let the developers know':'Privacidad: Nos tomamos nuestra privacidad muy en serio, como Apple, no se transmitirán datos o información a aplicaciones o sitios web de terceros. Si tiene alguna inquietud, infórmeselo a los desarrolladores.',
+      'Security: We are prideful or our privacy policy, so we ensure our users that there info and posts will be safe and secured': 'Seguridad: Estamos orgullosos de nuestra política de privacidad, por lo que aseguramos a nuestros usuarios que la información y las publicaciones estarán seguras y protegidas.',
+      '1. Behavior':'1. Comportamiento',
+      '1.1- Treat others users of how they want to be treated': '1.1- Tratar a los demás usuarios de cómo quieren ser tratados',
+      '1.2- Do not put personal information to the forums.': '1.2- No pongas información personal en los foros.',
+      '1.3- No harassment of other members. Racism, sexism, xenophobia, transphobia, homophobia, misogyny etc. have a perfect zero-tolerance': '1.3- No hostigamiento a otros miembros. El racismo, el sexismo, la xenofobia, la transfobia, la homofobia, la misoginia, etc.tienen una tolerancia cero perfecta.',
+      "1.4- Respect others' personal space.": '1.4- Respetar el espacio personal de los demás y damas.',
+      "1.5- Use common sense and don’t be toxic.": '1.5- Usa el sentido común y no seas tóxica.',
+      '2. Content': '2. Contenido',
+      '2.1- NSFW, Slurs, and threats is not allowed': '2.1- No se permiten NSFW, difamaciones y amenazas',
+      '2.2- No spamming!':'2.2- ¡Sin spam!',
+      '2.3- Use common sense and don’t be toxic.': '2.3- Usa el sentido común y no seas tóxico.',
+      '2.4- Use the appropriate channel for your discussions. If you are posting a Halo meme, keep it in the Halo Sub Forum': '2.4- Utilice el canal adecuado para sus discusiones. Si está publicando un meme de Halo, guárdelo en el Sub Foro de Halo',
+      "2.5- No Spoilers! We don't know who has not played or watched what so we don't want to spoil it for any user": "2.5- ¡Sin spoilers! No sabemos quién no ha jugado o visto qué, así que no queremos estropearlo para ningún usuario.",
+      '2.6- Self Promo is not allowed as it will create a lot of junk and not much conversation': '2.6- La autopromoción no está permitida ya que generará mucha basura y poca conversación.',
+      "Failing to abide to these rules then it'll be a gg. Other than that, have fun!": "Si no cumple con estas reglas, será un gg. Aparte de eso, ¡diviértete!"
+
 
     },
     //Hindi
@@ -76,7 +102,32 @@ class LocalString extends Translations{
       'Edit Bio': 'जैव संपादित करें',
       'Edit Image': 'संपादित छवि',
       'bio': 'जैव',
-      'username': 'उपयोगकर्ता नाम'
+      'username': 'उपयोगकर्ता नाम',
+
+  'Account Deleted!': 'खाता हटा दिया गया!',
+  'Delete Account': 'खाता हटा दो',
+  'Delete Account?': 'खाता हटा दो?',
+  'Q: What platform SOJA is available on?': 'प्रश्न: SOJA किस प्लेटफॉर्म पर उपलब्ध है?',
+  'A: Platforms currently available are iOS and Android.': 'ए: वर्तमान में उपलब्ध प्लेटफॉर्म आईओएस और एंड्रॉइड हैं।',
+  'Q: What type of games are we allowed to talk about?': 'प्रश्न: हमें किस प्रकार के खेलों के बारे में बात करने की अनुमति है?',
+  'A: You can talk about any game you like!': 'ए: आप अपनी पसंद के किसी भी गेम के बारे में बात कर सकते हैं!',
+  'Q: How friendly is the community? We provide users the most friendly experience to everyone.': 'प्रश्न: समुदाय कितना अनुकूल है? हम उपयोगकर्ताओं को सभी के लिए सबसे अनुकूल अनुभव प्रदान करते हैं।',
+  'Privacy: We take our privacy very seriously like Apple, no data or information will be spread to third-party apps or websites. If there are any concerns please let the developers know':'गोपनीयता: हम Apple की तरह अपनी गोपनीयता को बहुत गंभीरता से लेते हैं, कोई भी डेटा या जानकारी तृतीय-पक्ष एप्लिकेशन या वेबसाइटों पर नहीं फैलाई जाएगी। अगर कोई चिंता है तो कृपया डेवलपर्स को बताएं',
+  'Security: We are prideful or our privacy policy, so we ensure our users that there info and posts will be safe and secured': 'सुरक्षा: हम गौरवान्वित हैं या हमारी गोपनीयता नीति है, इसलिए हम अपने उपयोगकर्ताओं को सुनिश्चित करते हैं कि जानकारी और पोस्ट सुरक्षित और सुरक्षित रहेंगी',
+  '1. Behavior':'1. व्यवहार',
+  '1.1- Treat others users of how they want to be treated': '1.1- अन्य उपयोगकर्ताओं के साथ वैसा ही व्यवहार करें जैसा वे चाहते हैं कि उनके साथ कैसा व्यवहार किया जाए',
+  '1.2- Do not put personal information to the forums.': '1.2- व्यक्तिगत जानकारी को मंचों पर न डालें।',
+  '1.3- No harassment of other members. Racism, sexism, xenophobia, transphobia, homophobia, misogyny etc. have a perfect zero-tolerance': '1.3- अन्य सदस्यों का कोई उत्पीड़न नहीं। जातिवाद, लिंगवाद, ज़ेनोफ़ोबिया, ट्रांसफ़ोबिया, होमोफोबिया, मिसोगिनी आदि में पूर्ण शून्य-सहिष्णुता है',
+  "1.4- Respect others' personal space.": '1.4- दूसरों के व्यक्तिगत स्थान का सम्मान करें।',
+  "1.5- Use common sense and don’t be toxic.": '1.5- सामान्य ज्ञान का प्रयोग करें और विषाक्त न हों।',
+  '2. Content': '2. सामग्री',
+  '2.1- NSFW, Slurs, and threats is not allowed': '2.1- NSFW, गाली-गलौज और धमकियों की अनुमति नहीं है',
+  '2.2- No spamming!':'2.2- कोई स्पैमिंग नहीं!',
+  '2.3- Use common sense and don’t be toxic.': '2.3- सामान्य ज्ञान का प्रयोग करें और विषाक्त न हों।',
+  '2.4- Use the appropriate channel for your discussions. If you are posting a Halo meme, keep it in the Halo Sub Forum': '2.4- अपनी चर्चा के लिए उपयुक्त चैनल का प्रयोग करें। यदि आप हेलो मेम पोस्ट कर रहे हैं, तो इसे हेलो सब फोरम में रखें',
+  "2.5- No Spoilers! We don't know who has not played or watched what so we don't want to spoil it for any user": "2.5- कोई स्पॉयलर नहीं! हम नहीं जानते कि किसने क्या नहीं खेला या क्या देखा है इसलिए हम इसे किसी भी उपयोगकर्ता के लिए खराब नहीं करना चाहते हैं",
+  '2.6- Self Promo is not allowed as it will create a lot of junk and not much conversation': '2.6- सेल्फ़ प्रोमो की अनुमति नहीं है क्योंकि यह बहुत अधिक जंक पैदा करेगा और ज्यादा बातचीत नहीं करेगा',
+  "Failing to abide to these rules then it'll be a gg. Other than that, have fun!": "इन नियमों का पालन करने में विफल तो यह एक gg होगा। इसके अलावा, मज़े करो!"
     }
 
   };

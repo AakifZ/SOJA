@@ -35,7 +35,7 @@ class deleteAccountState extends State<deleteAccount> {
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
       appBar: AppBar(
-        title: Text("Delete Account?"),
+        title: Text("Delete Account?".tr),
       ),
             body: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +44,7 @@ class deleteAccountState extends State<deleteAccount> {
                   child: Text('Delete Account'.tr),
                     onPressed: () {
                       Fluttertoast.showToast(
-                          msg: "Account Deleted!",
+                          msg: "Account Deleted!".tr,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
@@ -69,7 +69,7 @@ class deleteAccountState extends State<deleteAccount> {
     await user.reauthenticateWithCredential(authen).then((value) {
       value.user!.delete().then((res) {
         Get.offAll(SignIn());
-        Get.snackbar("User Account Deleted", "Success");
+        Get.snackbar("User Account Deleted".tr, "Success".tr);
       });
     }
     ).catchError((onError)=> Get.snackbar("Credential Error", "Aye yo, fix that"));
