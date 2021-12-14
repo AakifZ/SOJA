@@ -69,7 +69,7 @@ class deleteAccountState extends State<deleteAccount> {
     await user.reauthenticateWithCredential(authen).then((value) {
       value.user!.delete().then((res) {
         Get.offAll(SignIn());
-        Get.snackbar("User Account Deleted".tr, "Success");
+        Get.snackbar("User Account Deleted".tr, "Success".tr);
       });
     }
     ).catchError((onError)=> Get.snackbar("Credential Error", "Aye yo, fix that"));

@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:soja/bio/bio_update.dart';
 import 'package:soja/models/user.dart';
@@ -52,7 +53,7 @@ class _ProfileState extends State<Profile> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Profile", style: TextStyle(fontSize: 22)),
+          title: Text("Profile".tr, style: TextStyle(fontSize: 22)),
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context, () {
@@ -69,10 +70,10 @@ class _ProfileState extends State<Profile> {
           ),
         ),
           body: FutureBuilder<DocumentSnapshot>(
-            future: FirebaseFirestore.instance.collection('users').doc(currentUser!.uid).get(),
+            future: FirebaseFirestore.instance.collection('users'.tr).doc(currentUser!.uid).get(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return new Text("Loading");
+                return new Text("Loading".tr);
               }
               return new Stack(
                 children: <Widget>[
@@ -103,14 +104,14 @@ class _ProfileState extends State<Profile> {
                           ),
                         SizedBox(height: 90.0),
                         Text(
-                          snapshot.data!['username'],
+                          snapshot.data!['username'.tr],
                           style: TextStyle(
                             fontSize: 25.0,
                           ),
                         ),
                         SizedBox(height: 15.0),
                         Text(
-                          snapshot.data!['bio'],
+                          snapshot.data!['bio'.tr],
                           style: TextStyle(
                             fontSize: 17.0,
                           ),
@@ -133,7 +134,7 @@ class _ProfileState extends State<Profile> {
                                   },
                                   child: Center(
                                     child: Text(
-                                      'Edit Image',
+                                      'Edit Image'.tr,
                                       style: TextStyle(
                                         color: Colors.white,
                                       ),
@@ -160,7 +161,7 @@ class _ProfileState extends State<Profile> {
                                   },
                                   child: Center(
                                     child: Text(
-                                      'Edit Bio',
+                                      'Edit Bio'.tr,
                                       style: TextStyle(
                                         color: Colors.white,
                                       ),
