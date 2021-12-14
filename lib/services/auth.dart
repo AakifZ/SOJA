@@ -52,13 +52,13 @@ class AuthService {
   }
 
   // register
-  Future register(String email, String username, String firstName, String lastName, String date, String password, String gender) async {
+  Future register(String email, String username, String firstName, String lastName, String date, String password, String gender, String bio) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
 
       //Pass user registration data into the Firestore database and give user an initial soja point value of 0.
-      await DatabaseService(uid: user!.uid).updateUserData(email, username, firstName, lastName, date, password, gender);
+      await DatabaseService(uid: user!.uid).updateUserData(email, username, firstName, lastName, date, password, gender, bio);
       return _userFromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
