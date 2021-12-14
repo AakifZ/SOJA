@@ -40,8 +40,13 @@ class DatabaseService {
   }
 
   Future getUsername(String uid) async {
-    print( userCollection.firestore.doc("username").id);
-    print( userCollection.firestore.doc("username"));
-
+    print("They are printed below");
+    //print( userCollection.firestore.doc("username").id);
+    //await userCollection.firestore.doc(uid).get().then((value) => print(value));
+    userCollection.get().then((value) {
+      if(value.docs.length > 0) {
+        print("The value is: " + value.docs[0].data().toString());
+      }
+    });
   }
 }
