@@ -33,7 +33,7 @@ class _OpenPostState extends State<OpenPost> {
         child: Card(
           child: ListTile(
             title: Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25), ),
-            subtitle: Text(widget.content, style: TextStyle(fontSize: 15),),
+            subtitle: Text(widget.content, style: TextStyle(fontSize: 25),),
           ),
         ),
       )

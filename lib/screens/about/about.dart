@@ -12,9 +12,10 @@ class About extends StatelessWidget {
         title: Text("About Us", style: TextStyle(fontSize: 22)),
           leading: IconButton(
           onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
+          /*Navigator.push(context, MaterialPageRoute(builder: (context) {
           return SettingPageUI();
-          }));
+          }));*/
+            Navigator.pop(context);
           },
           icon: Icon(
           Icons.arrow_back,
