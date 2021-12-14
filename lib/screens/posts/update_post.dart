@@ -36,64 +36,67 @@ class _UpdatePostState extends State<UpdatePost> {
               if (!snapshot.hasData) {
                 return new Text("Loading");
               }
-            return Column(
-                children: <Widget> [
-                  Text("Title", style: TextStyle(fontSize: 20),),
-                  TextFormField(
-                    initialValue: snapshot.data!['title'],
-                    style: TextStyle(color: Colors.black),
-                    decoration: textInputDecoration.copyWith(hintText: 'Title'),
-                    onChanged: (val) {
-                      title = val;
-                    },
-                  ),
-                  Text('Content', style: TextStyle(fontSize: 20),),
-                  TextFormField(
-                    initialValue: snapshot.data!['content'],
-                    style: TextStyle(color: Colors.black),
-                    decoration: textInputDecoration.copyWith(hintText: 'Content'),
-                    maxLines: 4,
-                    onChanged: (val) {
-                      content = val;
-                    },
-                  ),
-                  Text("Game", style: TextStyle(fontSize: 20),),
-                  TextFormField(
-                    initialValue: snapshot.data!['game'],
-                    style: TextStyle(color: Colors.black),
-                    decoration: textInputDecoration.copyWith(hintText: 'Game'),
-                    onChanged: (val) {
-                      game = val;
-                    },
-                  ),
-                  FlatButton(
+              title = snapshot.data!['title'];
+              content = snapshot.data!['content'];
+              game = snapshot.data!['game'];
+              return Column(
+                  children: <Widget> [
+                    Text("Title", style: TextStyle(fontSize: 20),),
+                    TextFormField(
+                      initialValue: snapshot.data!['title'],
+                      style: TextStyle(color: Colors.black),
+                      decoration: textInputDecoration.copyWith(hintText: 'Title'),
+                      onChanged: (val) {
+                        title = val;
+                      },
+                    ),
+                    Text('Content', style: TextStyle(fontSize: 20),),
+                    TextFormField(
+                      initialValue: snapshot.data!['content'],
+                      style: TextStyle(color: Colors.black),
+                      decoration: textInputDecoration.copyWith(hintText: 'Content'),
+                      maxLines: 4,
+                      onChanged: (val) {
+                        content = val;
+                      },
+                    ),
+                    Text("Game", style: TextStyle(fontSize: 20),),
+                    TextFormField(
+                      initialValue: snapshot.data!['game'],
+                      style: TextStyle(color: Colors.black),
+                      decoration: textInputDecoration.copyWith(hintText: 'Game'),
+                      onChanged: (val) {
+                        game = val;
+                      },
+                    ),
+                    FlatButton(
 
-                    onPressed: ()=> {
-                      if(title.isEmpty || content.isEmpty || game.isEmpty) {
-                        error = "Please fill in all fields!"
-                      } else
-                        {
-                          postService.updateData(widget.documentId, title, content, game)
-                              .then((value) => {
-                            print("Posted Successfully"),
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Home()))
-                          })
-                              .catchError((error) => {
-                            setState(() {
-                              this.error = 'Could not post!';
+                      onPressed: ()=> {
+                        if(title.isEmpty || content.isEmpty || game.isEmpty) {
+                          error = "Please fill in all fields!"
+                        } else
+                          {
+                            postService.updateData(widget.documentId, title, content, game)
+                                .then((value) => {
+                              print("Posted Successfully"),
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home()))
+                            })
+                                .catchError((error) => {
+                              setState(() {
+                                this.error = 'Could not post!';
+                              }),
                             }),
-                          }),
 
-                        },
+                          },
 
-                    }, child: Text('Update',
-                    style: TextStyle(color: Colors.purple, fontSize: 20,),),
+                      }, child: Text('Update',
+                      style: TextStyle(color: Colors.purple, fontSize: 20,),),
 
-                  ),
-                  Text(this.error, style: TextStyle(color: Colors.red, fontSize: 14.0)),
-                ]
-            );
-          }
+                    ),
+                    Text(this.error, style: TextStyle(color: Colors.red, fontSize: 14.0)),
+                  ]
+              );
+            }
         ),
       ),
     );
