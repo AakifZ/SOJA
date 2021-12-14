@@ -65,8 +65,8 @@ class LocalString extends Translations{
       '2.4- Use the appropriate channel for your discussions. If you are posting a Halo meme, keep it in the Halo Sub Forum': '2.4- Utilice el canal adecuado para sus discusiones. Si está publicando un meme de Halo, guárdelo en el Sub Foro de Halo',
       "2.5- No Spoilers! We don't know who has not played or watched what so we don't want to spoil it for any user": "2.5- ¡Sin spoilers! No sabemos quién no ha jugado o visto qué, así que no queremos estropearlo para ningún usuario.",
       '2.6- Self Promo is not allowed as it will create a lot of junk and not much conversation': '2.6- La autopromoción no está permitida ya que generará mucha basura y poca conversación.',
-      "Failing to abide to these rules then it'll be a gg. Other than that, have fun!": "Si no cumple con estas reglas, será un gg. Aparte de eso, ¡diviértete!"
-
+      "Failing to abide to these rules then it'll be a gg. Other than that, have fun!": "Si no cumple con estas reglas, será un gg. Aparte de eso, ¡diviértete!",
+      "Privacy & Security" : "Privacidad & Seguridad"
 
     },
     //Hindi
