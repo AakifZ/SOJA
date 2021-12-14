@@ -1,15 +1,24 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soja/bio/bio.dart';
 import 'package:soja/screens/home/home.dart';
 import 'package:soja/screens/posts/post.dart';
 import 'package:soja/screens/profile/profile.dart';
+import 'package:soja/services/database.dart';
 import 'package:soja/shared/constants.dart';
 
-class BioPage extends StatelessWidget {
+class BioPage extends StatefulWidget {
+  const BioPage({Key? key}) : super(key: key);
 
-  BioService bioService = new BioService();
+  @override
+  _BioPageState createState() => _BioPageState();
+}
+
+class _BioPageState extends State<BioPage> {
+  var currentUser = FirebaseAuth.instance.currentUser;
+  DatabaseService dataService = new DatabaseService(uid: '');
   String bio = "";
   String error = "";
 
@@ -41,14 +50,18 @@ class BioPage extends StatelessWidget {
                     error = "Please fill in all fields!"
                   } else
                     {
-                      bioService.updatePostData(bio),
-                      Navigator.push(context,
-                          MaterialPageRoute(
-                              builder: (context) => Profile(bio: _controller.text)
-                          )
-                      ),
-                    },
-                }, child: Text('Update Bio',
+                      dataService.updateBio(currentUser!.uid, bio)
+                          .then((value) => {
+                        print("Posted Successfully"),
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(bio: bio)))
+                      })
+
+                          .catchError((error) => {
+                        setState(() {
+                          this.error = 'Could not post!';
+                        }),
+                      }),
+                    },                }, child: Text('Update Bio',
                 style: TextStyle(color: Colors.purple, fontSize: 20,),),
               ),
             ]

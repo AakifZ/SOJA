@@ -19,7 +19,6 @@ class UpdatePost extends StatefulWidget {
 
 class _UpdatePostState extends State<UpdatePost> {
   PostService postService = new PostService();
-  final firebase = FirebaseFirestore.instance;
   String title = "";
   String content = "";
   String error = "";
