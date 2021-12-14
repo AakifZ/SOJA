@@ -99,8 +99,8 @@ class _HomeState extends State<Home> {
                                           onTap: (){
                                             Navigator.push(context, MaterialPageRoute(builder: (context) => OpenPost(snapshot.data[index].title, snapshot.data[index].content, snapshot.data[index].game, snapshot.data[index].documentID)));
                                           },
-                                          title: Text(snapshot.data[index].title, style: TextStyle(fontSize: 20)),
-                                          subtitle: Text(snapshot.data[index].content, style: TextStyle(fontSize: 15, height: 2), ),
+                                          title: Text(snapshot.data[index].title, style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
+                                          subtitle: Text(snapshot.data[index].content, style: TextStyle(fontSize: 20, height: 1), ),
                                           trailing: Text(snapshot.data[index].game, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 18.0),),
                                         ),
                                        /* Container(
@@ -164,7 +164,7 @@ class _HomeState extends State<Home> {
                                                 Widget result;
                                                 if (count == 0) {
                                                   result = Text(
-                                                    "like",
+                                                    "0",
                                                     style: TextStyle(color: color),
                                                   );
                                                 } else

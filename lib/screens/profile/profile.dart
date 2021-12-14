@@ -11,8 +11,6 @@ import 'package:soja/models/user.dart';
 import 'package:soja/settings/settings_page.dart';
 
 class Profile extends StatefulWidget {
-  final String? bio;
-  Profile({Key? key, this.bio}) : super (key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -57,9 +55,7 @@ class _ProfileState extends State<Profile> {
           title: Text("Profile", style: TextStyle(fontSize: 22)),
           leading: IconButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SettingPageUI();
-              }));
+              Navigator.pop(context);
             },
             icon: Icon(
               Icons.arrow_back,
