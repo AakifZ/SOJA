@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
                           if (snapshot.data == null) {
                             return Container(
                               child: Center(
-                                child: Text("Loading... forever"),
+                                child: Text("Loading... forever".tr),
                               ),
                             );
                           } else {
@@ -123,15 +123,15 @@ class _HomeState extends State<Home> {
                                                   context: context,
                                                   builder: (BuildContext context) {
                                                     return AlertDialog(
-                                                        title: Text("Are you sure you want to delete this post?"),
+                                                        title: Text("Are you sure you want to delete this post?".tr),
                                                         actions: [
                                                           FlatButton(onPressed: () {
                                                             Navigator.pop(context);
-                                                          }, child: Text("Cancel")),
+                                                          }, child: Text("Cancel".tr)),
                                                           FlatButton(onPressed: (){
                                                             postService.deleteData(snapshot.data[index].documentID).then((value) => setState(() {}));
                                                             Fluttertoast.showToast(
-                                                                msg: "Post Successfully Deleted!",
+                                                                msg: "Post Successfully Deleted!".tr,
                                                                 toastLength: Toast.LENGTH_SHORT,
                                                                 gravity: ToastGravity.CENTER,
                                                                 timeInSecForIosWeb: 1,
@@ -140,7 +140,7 @@ class _HomeState extends State<Home> {
                                                                 fontSize: 16.0
                                                             );
                                                             Navigator.pop(context);
-                                                          }, child: Text("Delete", style: TextStyle(color: Colors.red),))
+                                                          }, child: Text("Delete".tr, style: TextStyle(color: Colors.red),))
                                                         ]
                                                     );
                                                   });
@@ -227,12 +227,12 @@ class _HomeState extends State<Home> {
                         } else {
                           return Container(
                             child: Center(
-                              child: Text("Loading..."),
+                              child: Text("Loading...".tr),
                             ),
                           );
                         }
                       })),
-              Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20), child: Text("You've reached the end!"),),
+              Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20), child: Text("You've reached the end!".tr),),
             ]
           ),
 
