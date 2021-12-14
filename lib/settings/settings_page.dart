@@ -196,13 +196,13 @@ class _SettingPageUIState extends State<SettingPageUI> {
 
 
             ElevatedButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => deleteAccount()));
+              deleteAccount del = new deleteAccount();
+
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => deleteAccount()));
 
             }, child:  Text("Delete Account".tr, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
-
-
             ))),
 
             SizedBox(height: 40),

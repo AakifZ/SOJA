@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
@@ -16,10 +17,10 @@ class deleteAccount extends StatefulWidget {
   deleteAccount({this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  deleteAccountState createState() => deleteAccountState();
 }
 
-class _SignInState extends State<SignIn> {
+class deleteAccountState extends State<deleteAccount> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
@@ -33,92 +34,32 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
-      backgroundColor: Colors.purple[100],
       appBar: AppBar(
-        backgroundColor: Colors.purple[400],
-        elevation: 0.0,
-        title:Text('Sign in to SOJA'),
-        actions: <Widget> [
-          TextButton.icon(
-              icon: Icon(Icons.person),
-              label: Text('Register'),
-              onPressed: () {
-                widget.toggleView!();
-              }
-          )
-        ],
-      ), body: SingleChildScrollView(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget> [
-            SizedBox(height: 20.0,),
-            TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Enter Email'),
-                style: TextStyle(color: Colors.black),
-                validator: (val) => val!.isEmpty ? 'Enter email' : null,
-                onChanged: (val) {
-                  setState(() {
-                    email = val;
-                  });
-                }
-            ),
-            SizedBox(height: 20.0,),
-            TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Enter Password'),
-                style: TextStyle(color: Colors.black),
-                obscureText: true,
-                validator: (val) => val!.length < 8 ? 'Enter a password 8+ chars long' : null,
-                onChanged: (val) {
-                  setState(() {
-                    password = val;
-                  });
-                }
-            ),
-            SizedBox(height: 20.0,),
-            ElevatedButton(
-              child: Text('Sign In'),
-              style: ButtonStyle(
-                  backgroundColor:
-                  MaterialStateProperty.all(Colors.purple[400]),
-                  textStyle: MaterialStateProperty.all(
-                      TextStyle(color: Colors.white))),
-              onPressed: () async {
-                if(_formKey.currentState!.validate()) {
-                  setState(() => loading = true);
-                  dynamic result = await _auth.signIn(email, password);
-                  if (result == null) {
-                    setState(() {
-                      error = 'could not sign in with those credentials';
-                      loading = false;
-                    });
-                  }
-                }
-              },
-            ),
-            SizedBox(height: 12.0),
-            Text(
-              error,
-              style: TextStyle(color: Colors.red, fontSize: 14.0),
-            ),
-            Row(
+        title: Text("Delete Account?"),
+      ),
+            body: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   child: Text('Delete Account'.tr),
-                  onPressed: () {
-                  deleteUserAccount(email, password);
-
-                  },
-                ),
-              ],
-            ),
+                    onPressed: () {
+                      Fluttertoast.showToast(
+                          msg: "Account Deleted!",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.purple,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
+                      //deleteUserAccount(email, password);
+                      Navigator.pushAndRemoveUntil( context, MaterialPageRoute(builder: (context) => SignIn()), (Route<dynamic> route) => false, );
+                    }
+                  )
           ],
         ),
-      ),
-    ),
-    );
+      );
+
   }
 
   void deleteUserAccount(String email, String pass) async{
