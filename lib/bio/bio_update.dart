@@ -37,6 +37,7 @@ class _BioPageState extends State<BioPage> {
               if (!snapshot.hasData) {
                 return new Text("Loading");
               }
+              bio = snapshot.data!['bio'];
             return Column(
                 children: <Widget> [
                   Text('Bio', style: TextStyle(fontSize: 20),),
